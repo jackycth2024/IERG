@@ -152,3 +152,40 @@ document.addEventListener("DOMContentLoaded", function() {
     updateProductDetails();
 });
 
+// Function to fetch categories from the server and populate the select element
+function fetchCategories() {
+    fetch('/categories')
+        .then(response => response.json())
+        .then(categories => {
+            const categorySelect = document.getElementById('categorySelect');
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.catid;
+                option.textContent = category.name;
+                categorySelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching categories:', error));
+}
+
+// Function to fetch products by category from the server and populate the product list section
+function fetchProducts(categoryId) {
+    const productList = document.getElementById('productList');
+    // Clear previous products
+    productList.innerHTML = '';
+    // Fetch products for the selected category
+    fetch(`/products/${categoryId}`)
+        .then(response => response.json())
+        .then(products => {
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                // Create product HTML elements based on retrieved data
+                productElement.textContent = `${product.name} - $${product.price}`;
+                productList.appendChild(productElement);
+            });
+        })
+        .catch(error => console.error('Error fetching products:', error));
+}
+
+// Fetch categories when the page loads
+document.addEventListener('DOMContentLoaded', fetchCategories);

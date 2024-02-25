@@ -47,7 +47,7 @@
     </header>    
     
     <h2>On Sales</h2>
-    <section id="main">
+    <section id="main">       
         <div class="product" data-product-name="Shoes 1" data-product-price="19.99">
             <a href="Shoes1.html">
                 <img src="image/img/shoes1.png" alt="Product 1 Thumbnail">
@@ -84,11 +84,22 @@
             <button class="addToCart">Add to Cart</button>
         </div>
     </section>
-
+    
+    <label for="categorySelect">Select Category:</label>
+    <select id="categorySelect" onchange="fetchProducts(this.value)">
+        <option value="">Select Category</option>
+        <!-- Categories will be populated dynamically from the server -->
+    </select>
+    
+    <section id="productList">
+        <!-- Product list will be populated dynamically from the server -->
+    </section>
+    
     <footer>
         <p>&copy; 2024 CUHK Shopping. All rights reserved.</p>
     </footer>
     <script src="shopping.js"></script>
+    <script src="server.js"></script>
 </body>
 </html>
 
