@@ -121,6 +121,28 @@ nav li {
     }
 }
 
+.drop-zone {
+    border: 2px dashed #000000;
+    width: 300px;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.thumbnail-container {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    margin-top: 10px;
+    margin: 20px 0;
+}
+
+.thumbnail {
+    width: 200px;
+    height: 200px; 
+}
+
 
 footer {
     background-color: #333;
