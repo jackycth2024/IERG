@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Function to fetch categories from the server and populate the select element
 function fetchCategories() {
-    fetch('/categories')
+    fetch('/')
         .then(response => response.json())
         .then(categories => {
             const categorySelect = document.getElementById('categorySelect');
