@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function fetchCategories() {
-        fetch('/categories')
+        fetch('/')
             .then(response => response.json())
             .then(populateCategories)
             .catch(error => console.error('Error fetching categories:', error));
