@@ -156,8 +156,10 @@ document.addEventListener("DOMContentLoaded", function() {
 function fetchCategories() {
     console.log('Fetching categories...');
     fetch('/')
+        .then(console.log('Fetching categories hahahaha...'))
         .then(response => response.json())
         .then(categories => {
+            console.log('Categories')
             const categorySelect = document.getElementById('categorySelect');
             categorySelect.innerHTML = '<option value="">Select Category</option>';
             categories.forEach(category => {
