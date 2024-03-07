@@ -158,6 +158,7 @@ function fetchCategories() {
         .then(response => response.json())
         .then(categories => {
             const categorySelect = document.getElementById('categorySelect');
+            categorySelect.innerHTML = '<option value="">Select Category</option>';
             categories.forEach(category => {
                 const option = document.createElement('option');
                 option.value = category.catid;
