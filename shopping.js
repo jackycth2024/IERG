@@ -156,7 +156,6 @@ document.addEventListener("DOMContentLoaded", function() {
 function fetchCategories() {
     console.log('Fetching categories...');
     fetch('/')
-        .then(console.log('Fetching categories hahahaha...'))
         .then(response => response.json())
         .then(categories => {
             console.log('Categories')
