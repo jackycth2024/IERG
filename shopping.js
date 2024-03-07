@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // Function to fetch categories from the server and populate the select element
 function fetchCategories() {
     console.log('Fetching categories...');
-    fetch('/')
+    fetch('http://176.34.61.92:3000/')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -183,7 +183,7 @@ function fetchProducts(categoryId) {
     productList.innerHTML = '';
     // Fetch products for the selected category
     console.log('Fetching products...');
-    fetch(`/products/${categoryId}`)
+    fetch(`http://176.34.61.92:3000/products/${categoryId}`)
         .then(response => response.json())
         .then(products => {
             products.forEach(product => {
