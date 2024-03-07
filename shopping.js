@@ -154,6 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Function to fetch categories from the server and populate the select element
 function fetchCategories() {
+    console.log('Fetching categories...');
     fetch('/')
         .then(response => response.json())
         .then(categories => {
@@ -175,6 +176,7 @@ function fetchProducts(categoryId) {
     // Clear previous products
     productList.innerHTML = '';
     // Fetch products for the selected category
+    console.log('Fetching products...');
     fetch(`/products/${categoryId}`)
         .then(response => response.json())
         .then(products => {
