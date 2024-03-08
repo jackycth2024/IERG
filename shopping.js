@@ -257,49 +257,55 @@ function fetchProductDetails(productId) {
     fetch(`http://176.34.61.92:3000/products/${productId}`)
         .then(response => response.json())
         .then(product => {
-            const productDetailsContainer = document.getElementById('product-details');
-            productDetailsContainer.innerHTML = ''; 
-            
-            const productElement = document.createElement('div');
-            productElement.className = 'product';
-            productElement.dataset.productName = product.name;
-            productElement.dataset.productPrice = product.price;
-            
-            const productImage = document.createElement('img');
-            productImage.src = 'image/img/Product' + productId + '.png';
-            productImage.alt = product.name + ' Full-size Image';
-            
-            const productName = document.createElement('h3');
-            productName.textContent = product.name;
-            
-            const productDescription = document.createElement('p');
-            productDescription.textContent = product.description;
-            
-            const productPrice = document.createElement('p');
-            productPrice.textContent = '$' + product.price;
-            
-            const productInventory = document.createElement('p');
-            productInventory.textContent = 'Inventory: ';
-            
-            const inventorySpan = document.createElement('span');
-            inventorySpan.id = 'inventoryCount';
-            inventorySpan.textContent = product.inventory;
-            productInventory.appendChild(inventorySpan);
-            
-            const addToCartButton = document.createElement('button');
-            addToCartButton.className = 'addToCart';
-            addToCartButton.textContent = 'Add to Cart';
-            
-            // Append elements to the product details container
-            productElement.appendChild(productImage);
-            productElement.appendChild(productName);
-            productElement.appendChild(productDescription);
-            productElement.appendChild(productPrice);
-            productElement.appendChild(productInventory);
-            productElement.appendChild(addToCartButton);
-            
-            // Append product details container to the product details section
-            productDetailsContainer.appendChild(productElement);
+            if(product && Object.keys(product).length !== 0){
+                const productDetailsContainer = document.getElementById('product-details');
+                productDetailsContainer.innerHTML = ''; 
+                
+                const productElement = document.createElement('div');
+                productElement.className = 'product';
+                productElement.dataset.productName = product.name;
+                productElement.dataset.productPrice = product.price;
+                
+                const productImage = document.createElement('img');
+                productImage.src = 'image/img/Product' + productId + '.png';
+                productImage.alt = product.name + ' Full-size Image';
+                
+                const productName = document.createElement('h3');
+                productName.textContent = product.name;
+                
+                const productDescription = document.createElement('p');
+                productDescription.textContent = product.description;
+                
+                const productPrice = document.createElement('p');
+                productPrice.textContent = '$' + product.price;
+                
+                const productInventory = document.createElement('p');
+                productInventory.textContent = 'Inventory: ';
+                
+                const inventorySpan = document.createElement('span');
+                inventorySpan.id = 'inventoryCount';
+                inventorySpan.textContent = product.inventory;
+                productInventory.appendChild(inventorySpan);
+                
+                const addToCartButton = document.createElement('button');
+                addToCartButton.className = 'addToCart';
+                addToCartButton.textContent = 'Add to Cart';
+                
+                // Append elements to the product details container
+                productElement.appendChild(productImage);
+                productElement.appendChild(productName);
+                productElement.appendChild(productDescription);
+                productElement.appendChild(productPrice);
+                productElement.appendChild(productInventory);
+                productElement.appendChild(addToCartButton);
+                
+                // Append product details container to the product details section
+                productDetailsContainer.appendChild(productElement);
+            }
+            else{
+                console.error('Product data is null or empty.');
+            }
+            console.log(product)
         })
         .catch(error => console.error('Error fetching product details:', error));
 }
