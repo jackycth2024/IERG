@@ -54,7 +54,11 @@
         <p>&copy; 2024 CUHK Shopping. All rights reserved.</p>
     </footer>
     <script src="shopping.js"></script>
-    <script>fetchProductDetails('7')</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetchProductDetails(7);
+        });
+    </script>
 </body>
 </html>
 
