@@ -275,7 +275,7 @@ function fetchProductDetails(productId) {
                 productName.textContent = product.name;
                 
                 const productDescription = document.createElement('p');
-                productDescription.textContent = product.description;
+                productDescription.textContent = 'Description:' + product.description;
                 
                 const productPrice = document.createElement('p');
                 productPrice.textContent = '$' + product.price;
@@ -306,7 +306,6 @@ function fetchProductDetails(productId) {
             else{
                 console.error('Product data is null or empty.');
             }
-            console.log(products)
         })
         .catch(error => console.error('Error fetching product details:', error));
 }
