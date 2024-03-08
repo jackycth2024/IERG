@@ -254,7 +254,7 @@ function openProductDetails(productId) {
 
 //display product details in product details page
 function fetchProductDetails(productId) {
-    fetch('http://176.34.61.92:3000/products/${productId}')
+    fetch(`http://176.34.61.92:3000/products/${productId}`)
         .then(response => response.json())
         .then(product => {
             const productDetailsContainer = document.getElementById('product-details');
