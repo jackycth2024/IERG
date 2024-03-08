@@ -300,5 +300,3 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// Fetch categories when the page loads
-document.addEventListener('DOMContentLoaded', fetchCategories);
