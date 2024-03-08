@@ -45,23 +45,15 @@
             </ul>
         </nav>
     </header>      
-
+    
+    <!--Product details will be dynamically generated-->
     <section id="product-details">
-        <div class="product" data-product-name="Clothes 2" data-product-price="20.99" data-inventory="70">
-            <a class="product-details">
-                <img src="image/img/clothes1.png" alt="Shoes3 Full-size Image">
-            </a>
-            <h3>Clothes 2</h3>
-            <p>Description</p>
-            <p>$20.99</p>
-            <p>Inventory: <span id="inventoryCount">70</span></p>
-            <button class="addToCart">Add to Cart</button>
-        </div>  
     </section>
 
     <footer>
         <p>&copy; 2024 CUHK Shopping. All rights reserved.</p>
     </footer>
     <script src="shopping.js"></script>
+    <script>fetchProductDetails(5)</script>
 </body>
 </html>
