@@ -150,158 +150,155 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
     updateProductDetails();
-});
-
-// Function to fetch categories from the server and populate the select element
-function fetchCategories() {
-    console.log('Fetching categories...');
-    fetch('http://176.34.61.92:3000/')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(categories => {
-            console.log('Categories')
-            const categorySelect = document.getElementById('categorySelect');
-            categorySelect.innerHTML = '<option value="">Select Category</option>';
-            categories.forEach(category => {
-                const option = document.createElement('option');
-                option.value = category.catid;
-                option.textContent = category.name;
-                categorySelect.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error fetching categories:', error));
-}
-
-// Function to fetch products by category from the server and populate the product list section
-function fetchProducts(categoryId) {
-    const productList = document.getElementById('productList');
-    // Clear previous products
-    productList.innerHTML = '';
-    // Fetch products for the selected category
-    console.log('Fetching products...');
-    fetch(`http://176.34.61.92:3000/products/${categoryId}`)
-        .then(response => response.json())
-        .then(products => {
-            products.forEach(product => {
-                const productElement = document.createElement('div');
-                // Create product HTML elements based on retrieved data
-                productElement.textContent = `${product.name} - $${product.price}`;
-                productList.appendChild(productElement);
-            });
-        })
-        .catch(error => console.error('Error fetching products:', error));
-}
-
-// Fetch products data from the server and update the "On Sales" section
-function fetchProductsData() {
-    fetch('http://176.34.61.92:3000/products')
-        .then(response => response.json())
-        .then(products => {
-            const productList = document.getElementById('main');
-            productList.innerHTML = ''; // Clear existing products
-            
-            // Loop through the products and create HTML elements
-            products.forEach(product => {
+    // Function to fetch categories from the server and populate the select element
+    function fetchCategories() {
+        console.log('Fetching categories...');
+        fetch('http://176.34.61.92:3000/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(categories => {
+                console.log('Categories')
+                const categorySelect = document.getElementById('categorySelect');
+                categorySelect.innerHTML = '<option value="">Select Category</option>';
+                categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.catid;
+                    option.textContent = category.name;
+                    categorySelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+    }
+    
+    // Function to fetch products by category from the server and populate the product list section
+    function fetchProducts(categoryId) {
+        const productList = document.getElementById('productList');
+        // Clear previous products
+        productList.innerHTML = '';
+        // Fetch products for the selected category
+        console.log('Fetching products...');
+        fetch(`http://176.34.61.92:3000/products/${categoryId}`)
+            .then(response => response.json())
+            .then(products => {
+                products.forEach(product => {
+                    const productElement = document.createElement('div');
+                    // Create product HTML elements based on retrieved data
+                    productElement.textContent = `${product.name} - $${product.price}`;
+                    productList.appendChild(productElement);
+                });
+            })
+            .catch(error => console.error('Error fetching products:', error));
+    }
+    
+    // Fetch products data from the server and update the "On Sales" section
+    function fetchProductsData() {
+        fetch('http://176.34.61.92:3000/products')
+            .then(response => response.json())
+            .then(products => {
+                const productList = document.getElementById('main');
+                productList.innerHTML = ''; // Clear existing products
+                
+                // Loop through the products and create HTML elements
+                products.forEach(product => {
+                    const productElement = document.createElement('div');
+                    productElement.className = 'product';
+                    productElement.dataset.productName = product.name;
+                    productElement.dataset.productPrice = product.price;
+                    
+                    const productLink = document.createElement('a');
+                    productLink.href = '#'; // Add link to product details page
+                    productLink.onclick = () => openProductDetails(product.id);
+                    
+                    const productImage = document.createElement('img');
+                    productImage.src = product.imageUrl;
+                    productImage.alt = product.name + ' Thumbnail';
+                    
+                    const productName = document.createElement('h3');
+                    productName.textContent = product.name;
+                    
+                    const productPrice = document.createElement('p');
+                    productPrice.textContent = '$' + product.price;
+                    
+                    const addToCartButton = document.createElement('button');
+                    addToCartButton.className = 'addToCart';
+                    addToCartButton.textContent = 'Add to Cart';
+                    
+                    // Append elements to the product container
+                    productLink.appendChild(productImage);
+                    productLink.appendChild(productName);
+                    productElement.appendChild(productLink);
+                    productElement.appendChild(productPrice);
+                    productElement.appendChild(addToCartButton);
+                    
+                    // Append product container to the product list
+                    productList.appendChild(productElement);
+                });
+            })
+            .catch(error => console.error('Error fetching products:', error));
+    }
+    
+    //open product details page
+    function openProductDetails(productId) {
+        const pageName = 'Product' + productId + '.html';
+        window.location.href = pageName;
+    }
+    
+    //display product details in product details page
+    function fetchProductDetails(productId) {
+        fetch(`http://176.34.61.92:3000/products/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+                const productDetailsContainer = document.getElementById('product-details');
+                productDetailsContainer.innerHTML = ''; // Clear existing product details
+                
+                // Create product details HTML elements
                 const productElement = document.createElement('div');
                 productElement.className = 'product';
                 productElement.dataset.productName = product.name;
                 productElement.dataset.productPrice = product.price;
                 
-                const productLink = document.createElement('a');
-                productLink.href = '#'; // Add link to product details page
-                productLink.onclick = () => openProductDetails(product.id);
-                
                 const productImage = document.createElement('img');
                 productImage.src = product.imageUrl;
-                productImage.alt = product.name + ' Thumbnail';
+                productImage.alt = product.name + ' Full-size Image';
                 
                 const productName = document.createElement('h3');
                 productName.textContent = product.name;
                 
+                const productDescription = document.createElement('p');
+                productDescription.textContent = product.description;
+                
                 const productPrice = document.createElement('p');
                 productPrice.textContent = '$' + product.price;
+                
+                const productInventory = document.createElement('p');
+                productInventory.textContent = 'Inventory: ';
+                const inventorySpan = document.createElement('span');
+                inventorySpan.id = 'inventoryCount';
+                inventorySpan.textContent = product.inventory;
+                productInventory.appendChild(inventorySpan);
                 
                 const addToCartButton = document.createElement('button');
                 addToCartButton.className = 'addToCart';
                 addToCartButton.textContent = 'Add to Cart';
                 
-                // Append elements to the product container
-                productLink.appendChild(productImage);
-                productLink.appendChild(productName);
-                productElement.appendChild(productLink);
+                // Append elements to the product details container
+                productElement.appendChild(productImage);
+                productElement.appendChild(productName);
+                productElement.appendChild(productDescription);
                 productElement.appendChild(productPrice);
+                productElement.appendChild(productInventory);
                 productElement.appendChild(addToCartButton);
                 
-                // Append product container to the product list
-                productList.appendChild(productElement);
-            });
-        })
-        .catch(error => console.error('Error fetching products:', error));
-}
-
-//open product details page
-function openProductDetails(productId) {
-    const pageName = 'Product' + productId + '.html';
-    window.location.href = pageName;
-}
-
-//display product details in product details page
-function fetchProductDetails(productId) {
-    fetch(`http://176.34.61.92:3000/products/${productId}`)
-        .then(response => response.json())
-        .then(product => {
-            const productDetailsContainer = document.getElementById('product-details');
-            productDetailsContainer.innerHTML = ''; // Clear existing product details
-            
-            // Create product details HTML elements
-            const productElement = document.createElement('div');
-            productElement.className = 'product';
-            productElement.dataset.productName = product.name;
-            productElement.dataset.productPrice = product.price;
-            
-            const productImage = document.createElement('img');
-            productImage.src = product.imageUrl;
-            productImage.alt = product.name + ' Full-size Image';
-            
-            const productName = document.createElement('h3');
-            productName.textContent = product.name;
-            
-            const productDescription = document.createElement('p');
-            productDescription.textContent = product.description;
-            
-            const productPrice = document.createElement('p');
-            productPrice.textContent = '$' + product.price;
-            
-            const productInventory = document.createElement('p');
-            productInventory.textContent = 'Inventory: ';
-            const inventorySpan = document.createElement('span');
-            inventorySpan.id = 'inventoryCount';
-            inventorySpan.textContent = product.inventory;
-            productInventory.appendChild(inventorySpan);
-            
-            const addToCartButton = document.createElement('button');
-            addToCartButton.className = 'addToCart';
-            addToCartButton.textContent = 'Add to Cart';
-            
-            // Append elements to the product details container
-            productElement.appendChild(productImage);
-            productElement.appendChild(productName);
-            productElement.appendChild(productDescription);
-            productElement.appendChild(productPrice);
-            productElement.appendChild(productInventory);
-            productElement.appendChild(addToCartButton);
-            
-            // Append product details container to the product details section
-            productDetailsContainer.appendChild(productElement);
-        })
-        .catch(error => console.error('Error fetching product details:', error));
-}
-
-
+                // Append product details container to the product details section
+                productDetailsContainer.appendChild(productElement);
+            })
+            .catch(error => console.error('Error fetching product details:', error));
+    }
+});
 
 // Fetch categories when the page loads
 document.addEventListener('DOMContentLoaded', fetchCategories);
