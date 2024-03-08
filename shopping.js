@@ -156,9 +156,9 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(response => response.json())
             .then(products => {
                 const productList = document.getElementById('main');
-                productList.innerHTML = ''; // Clear existing products
+                productList.innerHTML = ''; 
                 
-                // Loop through the products and create HTML elements
+                // Loop through the products
                 products.forEach(product => {
                     const productElement = document.createElement('div');
                     productElement.className = 'product';
@@ -266,7 +266,7 @@ function fetchProductDetails(productId) {
             productElement.dataset.productPrice = product.price;
             
             const productImage = document.createElement('img');
-            productImage.src = 'Product' + productId + '.png';
+            productImage.src = 'image/img/Product' + productId + '.png';
             productImage.alt = product.name + ' Full-size Image';
             
             const productName = document.createElement('h3');
