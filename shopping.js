@@ -243,10 +243,12 @@ function fetchProductsData() {
         .catch(error => console.error('Error fetching products:', error));
 }
 
-// Function to open product details page
+//to open product details page
 function openProductDetails(productId) {
-    window.location.href = 'product_details.html?id=' + productId;
+    const pageName = 'Product' + productId + '.html';
+    window.location.href = pageName;
 }
+
 
 // Fetch categories when the page loads
 document.addEventListener('DOMContentLoaded', fetchCategories);
