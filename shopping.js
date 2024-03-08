@@ -256,8 +256,9 @@ function openProductDetails(productId) {
 function fetchProductDetails(productId) {
     fetch(`http://176.34.61.92:3000/products/${productId}`)
         .then(response => response.json())
-        .then(product => {
-            if(product && Object.keys(product).length !== 0){
+        .then(products => {
+            if(Array.isArray(products) && products.length > 0){
+                const product = products[0];
                 const productDetailsContainer = document.getElementById('product-details');
                 productDetailsContainer.innerHTML = ''; 
                 
@@ -305,7 +306,7 @@ function fetchProductDetails(productId) {
             else{
                 console.error('Product data is null or empty.');
             }
-            console.log(product)
+            console.log(products)
         })
         .catch(error => console.error('Error fetching product details:', error));
 }
