@@ -196,5 +196,57 @@ function fetchProducts(categoryId) {
         .catch(error => console.error('Error fetching products:', error));
 }
 
+// Fetch products data from the server and update the "On Sales" section
+function fetchProductsData() {
+    fetch('http://176.34.61.92:3000/products')
+        .then(response => response.json())
+        .then(products => {
+            const productList = document.getElementById('main');
+            productList.innerHTML = ''; // Clear existing products
+            
+            // Loop through the products and create HTML elements
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product';
+                productElement.dataset.productName = product.name;
+                productElement.dataset.productPrice = product.price;
+                
+                const productLink = document.createElement('a');
+                productLink.href = '#'; // Add link to product details page
+                productLink.onclick = () => openProductDetails(product.id);
+                
+                const productImage = document.createElement('img');
+                productImage.src = product.imageUrl;
+                productImage.alt = product.name + ' Thumbnail';
+                
+                const productName = document.createElement('h3');
+                productName.textContent = product.name;
+                
+                const productPrice = document.createElement('p');
+                productPrice.textContent = '$' + product.price;
+                
+                const addToCartButton = document.createElement('button');
+                addToCartButton.className = 'addToCart';
+                addToCartButton.textContent = 'Add to Cart';
+                
+                // Append elements to the product container
+                productLink.appendChild(productImage);
+                productLink.appendChild(productName);
+                productElement.appendChild(productLink);
+                productElement.appendChild(productPrice);
+                productElement.appendChild(addToCartButton);
+                
+                // Append product container to the product list
+                productList.appendChild(productElement);
+            });
+        })
+        .catch(error => console.error('Error fetching products:', error));
+}
+
+// Function to open product details page
+function openProductDetails(productId) {
+    window.location.href = 'product_details.html?id=' + productId;
+}
+
 // Fetch categories when the page loads
 document.addEventListener('DOMContentLoaded', fetchCategories);
