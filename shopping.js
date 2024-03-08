@@ -232,7 +232,7 @@ function fetchProducts(categoryId) {
     productList.innerHTML = '';
     // Fetch products for the selected category
     console.log('Fetching products...');
-    fetch(`http://176.34.61.92:3000/products/${categoryId}`)
+    fetch(`http://176.34.61.92:3000/products/catid=${categoryId}`)
         .then(response => response.json())
         .then(products => {
             products.forEach(product => {
@@ -258,16 +258,15 @@ function fetchProductDetails(productId) {
         .then(response => response.json())
         .then(product => {
             const productDetailsContainer = document.getElementById('product-details');
-            productDetailsContainer.innerHTML = ''; // Clear existing product details
+            productDetailsContainer.innerHTML = ''; 
             
-            // Create product details HTML elements
             const productElement = document.createElement('div');
             productElement.className = 'product';
             productElement.dataset.productName = product.name;
             productElement.dataset.productPrice = product.price;
             
             const productImage = document.createElement('img');
-            productImage.src = 'Product' + product.pid + '.png';
+            productImage.src = 'Product' + productId + '.png';
             productImage.alt = product.name + ' Full-size Image';
             
             const productName = document.createElement('h3');
