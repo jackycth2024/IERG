@@ -12,12 +12,14 @@ function updateShoppingList() {
     for (var itemName in cartItems) {
         var item = cartItems[itemName];
         var listItem = document.createElement("div");
-        listItem.className = "product-entry";
+        listItem.className = "product-ifo";
 
         // Product information
         var productInfo = document.createElement("span");
         productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
         listItem.appendChild(productInfo);
+
+        <input type="number" id="quantity-input" placeholder="Quantity" data-item-name="product1" oninput="updateQuantityFromInput(this)"></input>
 
         shoppingListContainer.appendChild(listItem);
 
