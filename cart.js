@@ -4,7 +4,6 @@ var cartItems = JSON.parse(localStorage.getItem("cartItems")) || {};
 var quantityInputs = {};
 
 function updateShoppingList() {
-    console.log("ShoppingList Updated");
     var shoppingListContainer = document.getElementById("shoppingList");
     shoppingListContainer.innerHTML = "";
     
@@ -108,6 +107,7 @@ addToCartButtons.forEach(function (button) {
 });
 
 function addToCart(productContainer) {
+    console.log("add to cart")
     var productName = productContainer.dataset.productName;
     var productPrice = parseFloat(productContainer.dataset.productPrice);
 
