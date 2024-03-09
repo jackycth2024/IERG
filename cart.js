@@ -7,6 +7,8 @@ function updateShoppingList() {
     var shoppingListContainer = document.getElementById("shoppingList");
     shoppingListContainer.innerHTML = "";
     
+    var totalAmount = 0;
+
     function createQuantityInputEventListener(itemName) {
         return function(event) {
             var newQuantity = parseInt(event.target.value);
@@ -38,7 +40,15 @@ function updateShoppingList() {
         listItem.appendChild(quantityInput);
 
         shoppingListContainer.appendChild(listItem);
+
+        // Calculate subtotal for the current item and add it to total amount
+        var subtotal = item.price * getTotalQuantity(itemName);
+        totalAmount += subtotal;
     }
+
+    var totalAmountContainer = document.createElement("div");
+    totalAmountContainer.textContent = "Total Amount: $" + totalAmount.toFixed(2);
+    shoppingListContainer.appendChild(totalAmountContainer);
 
     if (Object.keys(cartItems).length > 0) {
         // Checkout button
