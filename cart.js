@@ -1,5 +1,5 @@
 function updateShoppingList() {
-    console.log("ShoppingList Updated")
+    console.log("ShoppingList Updated");
     var shoppingListContainer = document.getElementById("shoppingList");
     shoppingListContainer.innerHTML = "";
     
