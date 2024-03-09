@@ -47,5 +47,11 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .catch(error => console.error('Error fetching products:', error));
     }
+    //to open product details page
+    function openProductDetails(productId) {
+        const pageName = 'Product' + productId + '.html';
+        window.location.href = pageName;
+    }
+    
     fetchProductsData();
 });
