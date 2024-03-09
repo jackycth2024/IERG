@@ -15,16 +15,18 @@ function updateShoppingList() {
         listItem.className = "product-entry";
 
         // Product information
-        console.log(item.price);
+
+
+        console.log(item.price.toFixed(2));
         if (item.price) {
             var productInfo = document.createElement("span");
             var quantities = document.createElement("span");
             productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
             quantities.innerHTML = "<input type='number' class='quantity-input' id='quantity-input' placeholder='getTotalQuantity(\"" + itemName + "\")' oninput='getQuantityFromInput(\"" + itemName + "\")'></input>";
         } else {
-            console.log("error"+item.price);
+            console.log("error"+item.price.toFixed(2));
         }
-        console.log(item.price);
+        console.log(item.price.toFixed(2));
 
 
         listItem.append(productInfo,quantities);       
