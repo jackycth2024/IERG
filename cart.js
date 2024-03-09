@@ -1,6 +1,7 @@
 var shoppingCart = document.getElementById("cart");
 var shoppingList = document.getElementById("shoppingList");
 var cartItems = JSON.parse(localStorage.getItem("cartItems")) || {};
+var quantityInputs = {};
 
 function updateShoppingList() {
     console.log("ShoppingList Updated");
