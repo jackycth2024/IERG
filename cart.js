@@ -16,21 +16,8 @@ function updateShoppingList() {
 
         // Product information
         var productInfo = document.createElement("span");
-        productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName)+ <button class='clearBtn' onclick='clearShoppingCart()'>Clear Cart</button>+<button class='checkoutBtn' onclick='checkout()'>Checkout</button>;
+        productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
         listItem.appendChild(productInfo);
-
-
-        // Quantity input
-        var quantityInput = document.createElement("input");
-        quantityInput.type = "number";
-        quantityInput.placeholder = getTotalQuantity(itemName);
-        quantityInput.value = getTotalQuantity(itemName);
-        quantityInput.className = "quantity-input";
-        quantityInput.dataset.itemName = itemName;
-        
-        listItem.appendChild(quantityInput);
-        quantityInput.addEventListener("input", createQuantityInputEventListener(quantityInput, itemName));
-
 
         shoppingListContainer.appendChild(listItem);
 
