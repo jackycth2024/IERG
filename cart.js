@@ -106,3 +106,15 @@ addToCartButtons.forEach(function (button) {
         addToCart(productContainer);
     });
 });
+
+function addToCart(productContainer) {
+    var productName = productContainer.dataset.productName;
+    var productPrice = parseFloat(productContainer.dataset.productPrice);
+
+    if (cartItems.hasOwnProperty(productName)) {
+        cartItems[productName].quantity++;
+    } else {
+        cartItems[productName] = { name: productName, price: productPrice, quantity: 1 };
+    }
+    updateShoppingList();
+}
