@@ -41,6 +41,10 @@ function updateShoppingList() {
 
         shoppingListContainer.appendChild(listItem);
 
+        var line = document.createElement("hr");
+        line.className = "separator-line";
+        shoppingListContainer.appendChild(line);
+
         // Calculate subtotal for the current item and add it to total amount
         var subtotal = item.price * getTotalQuantity(itemName);
         totalAmount += subtotal;
@@ -51,10 +55,10 @@ function updateShoppingList() {
     shoppingListContainer.appendChild(totalAmountContainer);
 
     if (Object.keys(cartItems).length > 0) {
-        // Checkout button
+        // Checkout and clear button
+        shoppingListContainer.innerHTML += "<button class='clearBtn' onclick='clearShoppingCart()'>Clear Cart</button>";
         shoppingListContainer.innerHTML += "<button class='checkoutBtn' onclick='checkout()'>Checkout</button>";
     } else {
-        // Empty message
         shoppingListContainer.innerHTML = "<p>Empty</p>";
     }
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
