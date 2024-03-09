@@ -19,6 +19,9 @@ function updateShoppingList() {
         productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
         listItem.appendChild(productInfo);
 
+        productInfo.innerHTML = "<input type='number' class='quantity-input' id='quantity-input' placeholder='Quantity' oninput='getQuantityFromInput(itemName)'></input>";
+        listItem.appendChild(productInfo);
+        
         shoppingListContainer.appendChild(listItem);
 
         // Calculate subtotal for the current item and add it to total amount
@@ -108,11 +111,9 @@ if (clearButton) {
     });
 }
 
-function updateQuantityFromInput(inputElement) {
-    var itemName = inputElement.dataset.itemName;
-    var quantity = inputElement.value;
+function getQuantityFromInput(itemName) {
+    let quantity = document.getElementById("quantity-input").value;
     updateQuantity(itemName, quantity);
-    updateShoppingList(); // Update the shopping list when the quantity changes
 }
 
 // function createQuantityInputEventListener(quantityInput, itemName) {
