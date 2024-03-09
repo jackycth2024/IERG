@@ -75,6 +75,9 @@ function fetchProductDetails(productId) {
                 const addToCartButton = document.createElement('button');
                 addToCartButton.className = 'addToCart';
                 addToCartButton.textContent = 'Add to Cart';
+                addToCartButton.addEventListener('click', function() {
+                    addToCart(productElement);
+                });
                 
                 // Append elements to the product details container
                 productElement.appendChild(productImage);
