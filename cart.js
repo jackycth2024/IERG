@@ -14,10 +14,10 @@ function updateShoppingList() {
         var listItem = document.createElement("div");
         listItem.className = "product-entry";
 
-        // Product information
 
-
-        console.log(item.price);
+        console.log("cartItems[itemName]:"+cartItems[itemName]);
+        console.log("itemName:"+itemName);
+        console.log("item.price:"+item.price);
         // Product information
         var productInfo = document.createElement("span");
         var priceText = item.price ? "$" + item.price.toFixed(2) : ""; 
