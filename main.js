@@ -32,6 +32,9 @@ function fetchProductsData() {
                 const addToCartButton = document.createElement('button');
                 addToCartButton.className = 'addToCart';
                 addToCartButton.textContent = 'Add to Cart';
+                addToCartButton.addEventListener('click', function() {
+                    addToCart(productElement);
+                });
                 
                 // Append elements to the product container
                 productLink.appendChild(productImage);
