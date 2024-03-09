@@ -33,7 +33,7 @@ function fetchProductsData() {
                 addToCartButton.className = 'addToCart';
                 addToCartButton.textContent = 'Add to Cart';
                 addToCartButton.addEventListener('click', function() {
-                    addToCart(productElement);
+                    addToCart(productElement,1);
                 });
                 
                 // Append elements to the product container

@@ -34,7 +34,9 @@ function updateShoppingList() {
         quantityInput.placeholder = getTotalQuantity(itemName);
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
-        quantityInput.addEventListener("input", createQuantityInputEventListener(itemName));
+        quantityInput.addEventListener("input", function(){
+            addToCart(itemName,quantityInput.value)
+        });
         
         listItem.appendChild(quantityInput);
 
@@ -73,13 +75,13 @@ function updateQuantity(itemName, newQuantity) {
     updateShoppingList();
 }
 
-function addToCart(productContainer) {
+function addToCart(productContainer,quantities) {
     console.log("adding to cart...")
     var productName = productContainer.getAttribute("data-product-name");
     var productPrice = parseFloat(productContainer.getAttribute("data-product-price"));
 
     if (cartItems.hasOwnProperty(productName)) {
-        cartItems[productName].quantity++;
+        cartItems[productName].quantity += quantities;
     } else {
         cartItems[productName] = { name: productName, price: productPrice, quantity: 1 };
     }
