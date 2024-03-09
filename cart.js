@@ -31,6 +31,7 @@ function updateShoppingList() {
 
         form.appendChild(quantityInput);       
         form.addEventListener("submit", function(event) {
+            console.log("hi");
             event.preventDefault();
             var newQuantity = parseInt(quantityInput.value);
             updateQuantity(itemName, newQuantity);
