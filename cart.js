@@ -32,7 +32,6 @@ function updateShoppingList() {
         var quantityInput = document.createElement("input");
         quantityInput.type = "number";
         quantityInput.placeholder = getTotalQuantity(itemName);
-        quantityInput.value = getTotalQuantity(itemName);
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
         quantityInput.addEventListener("input", createQuantityInputEventListener(itemName));
@@ -41,14 +40,14 @@ function updateShoppingList() {
 
         shoppingListContainer.appendChild(listItem);
 
-        var line = document.createElement("hr");
-        line.className = "separator-line";
-        shoppingListContainer.appendChild(line);
-
         // Calculate subtotal for the current item and add it to total amount
         var subtotal = item.price * getTotalQuantity(itemName);
         totalAmount += subtotal;
     }
+
+    var line = document.createElement("hr");
+    line.className = "separator-line";
+    shoppingListContainer.appendChild(line);
 
     var totalAmountContainer = document.createElement("div");
     totalAmountContainer.textContent = "Total Amount: $" + totalAmount.toFixed(2);
