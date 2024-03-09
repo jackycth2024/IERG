@@ -68,7 +68,7 @@ function updateShoppingList() {
 
 function getTotalQuantity(itemName) {
     var item = cartItems[itemName];
-    return quantityInputs[itemName] || item.quantity;
+    return quantityInputs[itemName];
 }
 
 function updateQuantity(itemName, newQuantity) {
