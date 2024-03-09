@@ -32,7 +32,8 @@ function updateShoppingList() {
         console.log(quantityInput.className);
         console.log(quantityInput.dataset.itemName);
         quantityInput.addEventListener("input", function(event) {
-            console.log("success");
+            console.log("input event fired");
+            console.log("New value:", event.target.value);
         });
         
         listItem.appendChild(quantityInput);
