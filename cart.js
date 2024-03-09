@@ -38,21 +38,11 @@ function updateShoppingList() {
         quantityInput.dataset.itemName = itemName;
         console.log("Attaching event listener to quantity input for item: " + itemName);
         quantityInput.addEventListener("input", createQuantityInputEventListener(quantityInput, itemName));
-        
-
-        var quantitiesInput = document.querySelector(".quantity-input");
-        quantitiesInput.append(quantityInput);
-        if (quantitiesInput) {
-            quantitiesInput.addEventListener("input", function(event) {
-                console.log("success2");
-                var newQuantity = parseInt(event.target.value);
-                updateQuantity(itemName, newQuantity);
-                updateShoppingList();;
-            });
-        }else{
+        if(quantityInput){
             console.log("fuck");
         }
         
+        listItem.appendChild(quantityInput);
 
         shoppingListContainer.appendChild(listItem);
 
