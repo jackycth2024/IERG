@@ -8,15 +8,6 @@ function updateShoppingList() {
     shoppingListContainer.innerHTML = "";
     
     var totalAmount = 0;
-    
-    function createQuantityInputEventListener(quantityInput, itemName) {
-        return function(event) {
-            console.log("success");
-            var newQuantity = parseInt(event.target.value);
-            updateQuantity(itemName, newQuantity);
-            updateShoppingList();
-        };
-    }
 
     for (var itemName in cartItems) {
         var item = cartItems[itemName];
@@ -33,11 +24,11 @@ function updateShoppingList() {
         var quantityInput = document.createElement("input");
         quantityInput.type = "number";
         quantityInput.placeholder = getTotalQuantity(itemName);
-        quantityInput_value = getTotalQuantity(itemName);
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
+        console.log(quantityInput.value);
         if(quantityInput){
-            createQuantityInputEventListener(quantityInput, itemName)
+            createQuantityInputEventListener(quantityInput.value, itemName)
         }
         
         listItem.appendChild(quantityInput);
@@ -130,3 +121,11 @@ if (clearButton) {
     });
 }
 
+function createQuantityInputEventListener(quantityInputvalue, itemName) {
+    return function(event) {
+        console.log("success");
+        var newQuantity = quantityInputvalue;
+        updateQuantity(itemName, newQuantity);
+        updateShoppingList();
+    };
+}
