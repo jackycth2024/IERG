@@ -8,16 +8,10 @@ function updateShoppingList() {
     shoppingListContainer.innerHTML = "";
     
     var totalAmount = 0;
-
-    function createQuantityInputEventListener(itemName) {
-        return function(event) {
-            var newQuantity = parseInt(event.target.value);
-            updateQuantity(itemName, newQuantity);
-            updateShoppingList();
-        };
-    }
     
     for (var itemName in cartItems) {
+        console.log("itemName:"+itemName);
+        console.log("cartItems[itemName]:"+cartItems[itemName]);
         var item = cartItems[itemName];
         var listItem = document.createElement("div");
         listItem.className = "product-entry";
@@ -35,7 +29,7 @@ function updateShoppingList() {
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
         quantityInput.addEventListener("input", function(){
-            addToCart(itemName,quantityInput.value)
+            addToCart(item,quantityInput.value)
         });
         
         listItem.appendChild(quantityInput);
