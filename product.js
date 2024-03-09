@@ -34,3 +34,5 @@ function addToCart(productContainer) {
     }
     updateShoppingList();
 }
+
+updateProductDetails()
