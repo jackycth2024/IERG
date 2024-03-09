@@ -53,5 +53,4 @@ function openProductDetails(productId) {
 }
 
 fetchProductsData();
-updateShoppingList();
 //document.addEventListener("DOMContentLoaded", function() {
