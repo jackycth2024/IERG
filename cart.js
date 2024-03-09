@@ -25,7 +25,7 @@ function updateShoppingList() {
 
         var quantities = document.createElement("span");
         productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
-        quantities.innerHTML = "<input type='number' class='quantity-input' id='quantity-input' placeholder='" + getTotalQuantity(itemName) + "' oninput='getQuantityFromInput(\"" + itemName + "\")'></input>";
+        quantities.innerHTML = "<input type='number' class='quantity-input' placeholder='" + getTotalQuantity(itemName) + "' oninput='updateQuantity(\"" + itemName + "\", this.value)'></input>";
 
         listItem.append(productInfo,quantities);       
         shoppingListContainer.appendChild(listItem);
@@ -59,10 +59,12 @@ function getTotalQuantity(itemName) {
     return quantityInputs[itemName] || item.quantity;
 }
 
+
 function updateQuantity(itemName, newQuantity) {
-    cartItems[itemName] = newQuantity;
+    cartItems[itemName].quantity = newQuantity;
     updateShoppingList();
 }
+
 
 function addToCart(productContainer) {
     console.log("adding to cart...");
@@ -117,10 +119,6 @@ if (clearButton) {
     });
 }
 
-function getQuantityFromInput(itemName) {
-    let quantity = document.getElementById("quantity-input").value;
-    updateQuantity(itemName, quantity);
-}
 
 // function createQuantityInputEventListener(quantityInput, itemName) {
 //     return function(event) {
