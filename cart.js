@@ -12,14 +12,12 @@ function updateShoppingList() {
     for (var itemName in cartItems) {
         var item = cartItems[itemName];
         var listItem = document.createElement("div");
-        listItem.className = "product-ifo";
+        listItem.className = "product-entry";
 
         // Product information
         var productInfo = document.createElement("span");
-        productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
+        productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName) + "<input type='number' id='quantity-input' placeholder='Quantity'  oninput='updateQuantityFromInput(this)'></input>";
         listItem.appendChild(productInfo);
-
-        shoppingListContainer.innerHTML += "<input type='number' id='quantity-input' placeholder='Quantity'  oninput='updateQuantityFromInput(this)'></input>";
 
         shoppingListContainer.appendChild(listItem);
 
