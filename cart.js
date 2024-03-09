@@ -11,7 +11,7 @@ function updateShoppingList() {
         return function(event) {
             var newQuantity = parseInt(event.target.value);
             updateQuantity(itemName, newQuantity);
-            updateShoppingList();  // Update the shopping list when the quantity changes
+            updateShoppingList();
         };
     }
     
@@ -107,9 +107,9 @@ addToCartButtons.forEach(function (button) {
 });
 
 function addToCart(productContainer) {
-    console.log("add to cart")
-    var productName = productContainer.dataset.productName;
-    var productPrice = parseFloat(productContainer.dataset.productPrice);
+    console.log("adding to cart...")
+    var productName = productContainer.getAttribute("data-product-name");
+    var productPrice = parseFloat(productContainer.getAttribute("data-product-price"));
 
     if (cartItems.hasOwnProperty(productName)) {
         cartItems[productName].quantity++;
