@@ -54,5 +54,5 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     fetchProductsData();
-    updateShoppingList()
+    updateShoppingList();
 });
