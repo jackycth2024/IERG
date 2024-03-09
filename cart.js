@@ -17,7 +17,7 @@ function updateShoppingList() {
         // Product information
         var productInfo = document.createElement("span");
         var quantities = document.createElement("span");
-        productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
+        productInfo.innerHTML = item.name + " - $" + item.price + " x " + getTotalQuantity(itemName);
         quantities.innerHTML = "<input type='number' class='quantity-input' id='quantity-input' placeholder='Quantity' oninput='getQuantityFromInput(\"" + itemName + "\")'></input>";
         
         listItem.append(productInfo,quantities);       
@@ -34,7 +34,7 @@ function updateShoppingList() {
     shoppingListContainer.appendChild(line);
 
     var totalAmountContainer = document.createElement("div");
-    totalAmountContainer.textContent = "Total Amount: $" + totalAmount.toFixed(2);
+    totalAmountContainer.textContent = "Total Amount: $" + totalAmount;
     shoppingListContainer.appendChild(totalAmountContainer);
 
     if (Object.keys(cartItems).length > 0) {
