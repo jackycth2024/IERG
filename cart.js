@@ -3,6 +3,10 @@ var shoppingList = document.getElementById("shoppingList");
 var cartItems = JSON.parse(localStorage.getItem("cartItems")) || {};
 var quantityInputs = {};
 
+if (Object.keys(cartItems).length === 0) {
+    cartItems["product1"] = { name: "Product 1", price: 10, quantity: 0 }; // You can adjust the price as needed
+}
+
 function updateShoppingList() {
     var shoppingListContainer = document.getElementById("shoppingList");
     shoppingListContainer.innerHTML = "";
