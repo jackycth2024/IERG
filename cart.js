@@ -28,11 +28,11 @@ function updateShoppingList() {
         quantityInput.value = getTotalQuantity(itemName);
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
-        quantityInput.addEventListener("change", function(){
-            console.log("original value="+quantityInput.value);
-            quantityInput.value ++;
-            console.log("new value="+quantityInput.value);
-            addToCart(item,quantityInput.value);
+        quantityInput.addEventListener("input", function(event) {
+            console.log("original value=" + event.target.value);
+            event.target.value++;
+            console.log("new value=" + event.target.value);
+            addToCart(item, event.target.value);
             updateShoppingList();
         });
         
