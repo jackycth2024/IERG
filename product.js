@@ -24,8 +24,8 @@ function updateProductDetails() {
 }
 
 function addToCart(productContainer) {
-    var productName = productContainer.getAttribute("data-product-name");
-    var productPrice = parseFloat(productContainer.getAttribute("data-product-price"));
+    var productName = productContainer.dataset.productName;
+    var productPrice = parseFloat(productContainer.dataset.productPrice);
 
     if (cartItems.hasOwnProperty(productName)) {
         cartItems[productName].quantity++;
