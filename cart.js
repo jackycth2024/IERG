@@ -17,8 +17,8 @@ function updateShoppingList() {
         // Product information
         var productInfo = document.createElement("span");
         var quantities = document.createElement("span");
-        productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
         quantities.innerHTML = "<input type='number' class='quantity-input' id='quantity-input' placeholder='Quantity' oninput='getQuantityFromInput(\"" + itemName + "\")'></input>";
+        productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
         
         listItem.append(productInfo,quantities);       
         shoppingListContainer.appendChild(listItem);
