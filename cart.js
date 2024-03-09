@@ -19,7 +19,7 @@ function updateShoppingList() {
         productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
         listItem.appendChild(productInfo);
 
-        <input type="number" id="quantity-input" placeholder="Quantity" data-item-name="product1" oninput="updateQuantityFromInput(this)"></input>
+        shoppingListContainer.innerHTML += "<input type='number' id='quantity-input' placeholder='Quantity'  oninput='updateQuantityFromInput(this)'></input>";
 
         shoppingListContainer.appendChild(listItem);
 
