@@ -15,12 +15,15 @@ function updateShoppingList() {
         listItem.className = "product-entry";
 
         // Product information
-
         var productInfo = document.createElement("span");
         var quantities = document.createElement("span");
+        if (item.price) {
+            productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
+            quantities.innerHTML = "<input type='number' class='quantity-input' id='quantity-input' placeholder='getTotalQuantity(\"" + itemName + "\")' oninput='getQuantityFromInput(\"" + itemName + "\")'></input>";
+        } else {
+            productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
+        }
 
-        productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
-        quantities.innerHTML = "<input type='number' class='quantity-input' id='quantity-input' placeholder='getTotalQuantity(\"" + itemName + "\")' oninput='getQuantityFromInput(\"" + itemName + "\")'></input>";
 
         listItem.append(productInfo,quantities);       
         shoppingListContainer.appendChild(listItem);
