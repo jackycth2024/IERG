@@ -31,16 +31,16 @@ function updateShoppingList() {
 
 
         // Quantity input
-        var quantityInput = document.createElement("input");
+        var quantityInput = document.createElement("button");
         quantityInput.type = "number";
         quantityInput.placeholder = getTotalQuantity(itemName);
         quantityInput.value = getTotalQuantity(itemName);
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
-        console.log(quantityInput);
-        quantityInput.addEventListener("input", createQuantityInputEventListener(quantityInput, itemName));
         
         listItem.appendChild(quantityInput);
+        quantityInput.addEventListener("submit", createQuantityInputEventListener(quantityInput, itemName));
+
 
         shoppingListContainer.appendChild(listItem);
 
@@ -48,6 +48,7 @@ function updateShoppingList() {
         var subtotal = item.price * getTotalQuantity(itemName);
         totalAmount += subtotal;
     }
+
 
     var line = document.createElement("hr");
     line.className = "separator-line";
