@@ -49,6 +49,8 @@ function updateShoppingList() {
                 updateQuantity(itemName, newQuantity);
                 updateShoppingList();;
             });
+        }else{
+            console.log("fuck");
         }
         
 
