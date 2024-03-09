@@ -27,6 +27,10 @@ function updateShoppingList() {
         quantityInput.value = getTotalQuantity(itemName);
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
+        console.log(quantityInput.type);
+        console.log(quantityInput.value);
+        console.log(quantityInput.className);
+        console.log(quantityInput.dataset.itemName);
         quantityInput.addEventListener("input", function(event) {
             console.log("success");
         });
