@@ -36,10 +36,8 @@ function updateShoppingList() {
         quantityInput_value = getTotalQuantity(itemName);
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
-        console.log("Attaching event listener to quantity input for item: " + itemName);
-        quantityInput.addEventListener("input", createQuantityInputEventListener(quantityInput, itemName));
         if(quantityInput){
-            console.log("fuck");
+            createQuantityInputEventListener(quantityInput, itemName)
         }
         
         listItem.appendChild(quantityInput);
