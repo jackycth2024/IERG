@@ -21,18 +21,14 @@ function updateShoppingList() {
 
 
         // Quantity input
-        var quantityInput = document.createElement('input');
+        var quantityInput = document.createElement("input");
         quantityInput.type = "number";
         quantityInput.placeholder = getTotalQuantity(itemName);
         quantityInput.value = getTotalQuantity(itemName);
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
-        quantityInput.addEventListener('input', (event) => {
-            console.log("original value=" + event.target.value);
-            event.target.value++;
-            console.log("new value=" + event.target.value);
-            addToCart(item, event.target.value);
-            updateShoppingList();
+        quantityInput.addEventListener("input", function(event) {
+            console.log("success");
         });
         
         listItem.appendChild(quantityInput);
