@@ -65,6 +65,10 @@ body {
     margin-bottom: 10px;
 }
 
+.shopping-list .quantity-input {
+    width: 80px; 
+}
+
 .shopping-list input {
     width: 50px;
 }
@@ -101,6 +105,7 @@ nav li {
     margin: 10px;
     text-align: center;
 }
+
 
 .product img {
     width: 100px;
