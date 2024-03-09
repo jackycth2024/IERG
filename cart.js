@@ -70,7 +70,8 @@ function updateQuantity(itemName, newQuantity) {
 }
 
 function addToCart(productContainer,quantities) {
-    console.log("adding to cart...")
+    console.log("adding to cart...");
+    console.log("productContainer:"+productContainer);
     var productName = productContainer.getAttribute("data-product-name");
     var productPrice = parseFloat(productContainer.getAttribute("data-product-price"));
 
