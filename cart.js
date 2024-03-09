@@ -11,16 +11,14 @@ function updateShoppingList() {
     
     function createQuantityInputEventListener(quantityInput, itemName) {
         return function(event) {
-            console.log("original value="+quantityInput.value);
-            quantityInput.value = event.target.value;
-            console.log("new value="+quantityInput.value);
+            console.log("success");
+            var newQuantity = parseInt(event.target.value);
             updateQuantity(itemName, newQuantity);
             updateShoppingList();
         };
     }
 
     for (var itemName in cartItems) {
-        console.log("cartItems[itemName]:"+cartItems[itemName]);
         var item = cartItems[itemName];
         var listItem = document.createElement("div");
         listItem.className = "product-entry";
@@ -35,12 +33,24 @@ function updateShoppingList() {
         var quantityInput = document.createElement("input");
         quantityInput.type = "number";
         quantityInput.placeholder = getTotalQuantity(itemName);
-        quantityInput.value = getTotalQuantity(itemName);
+        quantityInput_value = getTotalQuantity(itemName);
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
+        console.log("Attaching event listener to quantity input for item: " + itemName);
         quantityInput.addEventListener("input", createQuantityInputEventListener(quantityInput, itemName));
         
-        listItem.appendChild(quantityInput);
+
+        var quantitiesInput = document.querySelector(".quantity-input");
+        quantitiesInput.append(quantityInput);
+        if (quantitiesInput) {
+            quantitiesInput.addEventListener("input", function(event) {
+                console.log("success2");
+                var newQuantity = parseInt(event.target.value);
+                updateQuantity(itemName, newQuantity);
+                updateShoppingList();;
+            });
+        }
+        
 
         shoppingListContainer.appendChild(listItem);
 
