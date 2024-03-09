@@ -16,12 +16,11 @@ function updateShoppingList() {
 
         // Product information
         var productInfo = document.createElement("span");
+        var quantities = document.createElement("span");
         productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
-        listItem.appendChild(productInfo);
-
-        productInfo.innerHTML = "<input type='number' class='quantity-input' id='quantity-input' placeholder='Quantity' oninput='getQuantityFromInput(itemName)'></input>";
-        listItem.appendChild(productInfo);
+        quantities.innerHTML = "<input type='number' class='quantity-input' id='quantity-input' placeholder='Quantity' oninput='getQuantityFromInput(itemName)'></input>";
         
+        listItem.append(productInfo,quantities);       
         shoppingListContainer.appendChild(listItem);
 
         // Calculate subtotal for the current item and add it to total amount
