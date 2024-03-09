@@ -64,14 +64,14 @@ function updateQuantity(itemName, newQuantity) {
     updateShoppingList();
 }
 
-function addToCart(productContainer,quantities) {
+function addToCart(productContainer) {
     console.log("adding to cart...");
     console.log("productContainer:"+productContainer);
     var productName = productContainer.getAttribute("data-product-name");
     var productPrice = parseFloat(productContainer.getAttribute("data-product-price"));
 
     if (cartItems.hasOwnProperty(productName)) {
-        cartItems[productName].quantity += quantities;
+        cartItems[productName].quantity ++;
     } else {
         cartItems[productName] = { name: productName, price: productPrice, quantity: 1 };
     }
