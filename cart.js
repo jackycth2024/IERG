@@ -112,13 +112,4 @@ if (clearButton) {
     });
 }
 
-var addToCartButtons = document.querySelectorAll(".addToCart");
-addToCartButtons.forEach(function (button) {
-    console.log("addToCartButtons.forEach works")
-    button.addEventListener("click", function (event) {
-        console.log("button.addEventListener works")
-        var productContainer = event.target.closest(".product");
-        addToCart(productContainer);
-    });
-});
 
