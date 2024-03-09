@@ -1,3 +1,7 @@
+var shoppingCart = document.getElementById("cart");
+var shoppingList = document.getElementById("shoppingList");
+var cartItems = JSON.parse(localStorage.getItem("cartItems")) || {};
+
 function updateShoppingList() {
     console.log("ShoppingList Updated");
     var shoppingListContainer = document.getElementById("shoppingList");
