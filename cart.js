@@ -9,7 +9,18 @@ function updateShoppingList() {
     
     var totalAmount = 0;
     
+    function createQuantityInputEventListener(quantityInput, itemName) {
+        return function(event) {
+            console.log("original value="+quantityInput.value);
+            quantityInput.value = event.target.value;
+            console.log("new value="+quantityInput.value);
+            updateQuantity(itemName, newQuantity);
+            updateShoppingList();
+        };
+    }
+
     for (var itemName in cartItems) {
+        console.log("cartItems[itemName]:"+cartItems[itemName]);
         var item = cartItems[itemName];
         var listItem = document.createElement("div");
         listItem.className = "product-entry";
@@ -21,27 +32,18 @@ function updateShoppingList() {
 
 
         // Quantity input
-        var form = document.createElement("form");
         var quantityInput = document.createElement("input");
         quantityInput.type = "number";
         quantityInput.placeholder = getTotalQuantity(itemName);
         quantityInput.value = getTotalQuantity(itemName);
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
-
-        form.appendChild(quantityInput);       
-        form.addEventListener("submit", function(event) {
-            console.log("hi");
-            event.preventDefault();
-            var newQuantity = parseInt(quantityInput.value);
-            updateQuantity(itemName, newQuantity);
-            updateShoppingList();
-        });
+        quantityInput.addEventListener("input", createQuantityInputEventListener(quantityInput, itemName));
         
-
+        listItem.appendChild(quantityInput);
 
         shoppingListContainer.appendChild(listItem);
-        shoppingListContainer.appendChild(form);
+
         // Calculate subtotal for the current item and add it to total amount
         var subtotal = item.price * getTotalQuantity(itemName);
         totalAmount += subtotal;
@@ -67,7 +69,7 @@ function updateShoppingList() {
 
 function getTotalQuantity(itemName) {
     var item = cartItems[itemName];
-    return item.quantity;
+    return quantityInputs[itemName] || item.quantity;
 }
 
 function updateQuantity(itemName, newQuantity) {
@@ -127,5 +129,4 @@ if (clearButton) {
         clearShoppingCart();
     });
 }
-
 
