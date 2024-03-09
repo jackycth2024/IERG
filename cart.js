@@ -10,7 +10,6 @@ function updateShoppingList() {
     var totalAmount = 0;
     
     for (var itemName in cartItems) {
-        console.log("itemName:"+itemName);
         console.log("cartItems[itemName]:"+cartItems[itemName]);
         var item = cartItems[itemName];
         var listItem = document.createElement("div");
@@ -26,9 +25,13 @@ function updateShoppingList() {
         var quantityInput = document.createElement("input");
         quantityInput.type = "number";
         quantityInput.placeholder = getTotalQuantity(itemName);
+        quantityInput.value = getTotalQuantity(itemName);
         quantityInput.className = "quantity-input";
         quantityInput.dataset.itemName = itemName;
         quantityInput.addEventListener("input", function(){
+            console.log("original value="+quantityInput.value);
+            quantityInput.value ++;
+            console.log("new value="+quantityInput.value);
             addToCart(item,quantityInput.value);
             updateShoppingList();
         });
