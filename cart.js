@@ -17,7 +17,7 @@ function updateShoppingList() {
         // Product information
         var productInfo = document.createElement("span");
         productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
-        listItem.appendChild(productInfo);
+        listItem.appendChild(productInfo)；
 
         shoppingListContainer.appendChild(listItem);
 
@@ -108,12 +108,19 @@ if (clearButton) {
     });
 }
 
-function createQuantityInputEventListener(quantityInput, itemName) {
-    return function(event) {
-        console.log("success");
-        console.log(quantityInput);
-        var newQuantity = parseInt(event.target.value);
-        updateQuantity(itemName, newQuantity);
-        updateShoppingList();
-    };
+function updateQuantityFromInput(inputElement) {
+    var itemName = inputElement.dataset.itemName;
+    var quantity = inputElement.value;
+    updateQuantity(itemName, quantity);
+    updateShoppingList(); // Update the shopping list when the quantity changes
 }
+
+// function createQuantityInputEventListener(quantityInput, itemName) {
+//     return function(event) {
+//         console.log("success");
+//         console.log(quantityInput);
+//         var newQuantity = parseInt(event.target.value);
+//         updateQuantity(itemName, newQuantity);
+//         updateShoppingList();
+//     };
+// }
