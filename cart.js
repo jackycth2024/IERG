@@ -48,6 +48,7 @@ function updateShoppingList() {
     } else {
         shoppingListContainer.innerHTML = "<p>Empty</p>";
     }
+
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
@@ -64,7 +65,7 @@ function updateQuantity(itemName, newQuantity) {
         updateShoppingList();
     }
     else{
-        return;
+        updateShoppingList();
     }
 }
 

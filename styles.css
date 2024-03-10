@@ -56,7 +56,9 @@ body {
     background-color: #7ba4e2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
-    display: none; /* Initially hide the shopping list */
+    display: none;
+    max-height: 400px; 
+    overflow-y: scroll; /* scrolling */
 }
 
 .shopping-list .product-entry {
