@@ -78,7 +78,8 @@ function addToCart(productContainer) {
 }
 
 function removeproduct(itemName){
-    cartItems[itemName] = {};
+    itemName = {};
+    updateShoppingList();
 }
 
 function clearShoppingCart() {
@@ -112,10 +113,3 @@ shoppingCart.addEventListener("mouseover", function(event) {
 shoppingList.addEventListener("mouseleave", function() {
     shoppingList.style.display = "none";
 });
-
-var clearButton = document.querySelector(".clearBtn");
-if (clearButton) {
-    clearButton.addEventListener("click", function() {
-        clearShoppingCart();
-    });
-}
