@@ -79,9 +79,9 @@ function addToCart(productContainer) {
 
 function removeproduct(itemName){
     if (cartItems.hasOwnProperty(itemName)) {
-        delete cartItems[itemName]; 
-        updateShoppingList(); 
+        delete cartItems[itemName];  
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        updateShoppingList();
     }
 }
 
