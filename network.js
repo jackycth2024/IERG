@@ -120,6 +120,12 @@ function fetchProductDetails(productId) {
                 const inventorySpan = document.createElement('span');
                 inventorySpan.id = 'inventoryCount';
                 inventorySpan.textContent = product.inventory;
+                if (product.inventory <= 3) {
+                    inventorySpan.style.color = "red";
+                    inventorySpan.textContent = " Only " + product.inventory + " left!";
+                } else {
+                    inventorySpan.style.color = ""; // Reset color
+                }
                 productInventory.appendChild(inventorySpan);
                 
                 const addToCartButton = document.createElement('button');
