@@ -1,5 +1,4 @@
 function fetchCategories() {
-    console.log('Fetching categories...');
     fetch('http://176.34.61.92:3000/')
         .then(response => {
             if (!response.ok) {
@@ -21,10 +20,10 @@ function fetchCategories() {
         .catch(error => console.error('Error fetching categories:', error));
 }
 
+// productList selected by Categories
 function fetchProducts(categoryId) {
     const productList = document.getElementById('productList');
     productList.innerHTML = '';
-    console.log('Fetching products...');
     fetch(`http://176.34.61.92:3000/products/catid=${categoryId}`)
         .then(response => response.json())
         .then(products => {
@@ -36,6 +35,57 @@ function fetchProducts(categoryId) {
         })
         .catch(error => console.error('Error fetching products:', error));
 }
+
+//update the CategoriesDetails page
+function fetchCategoriesDetails(categoryId) {
+    fetch(`http://176.34.61.92:3000/products/catid=${categoryId}`)
+        .then(response => response.json())
+        .then(products => {
+            const productList = document.getElementById('Categoriesmain');
+            productList.innerHTML = ''; // Clear existing products
+            
+            // Loop through the products and create HTML elements
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product';
+                productElement.dataset.productName = product.name;
+                productElement.dataset.productPrice = product.price;
+                
+                const productLink = document.createElement('a');
+                productLink.href = '#'; // Add link to product details page
+                productLink.onclick = () => openProductDetails(product.pid);
+                
+                const productImage = document.createElement('img');
+                productImage.src = 'image/img/Product' + product.pid + '.png';
+                productImage.alt = product.name + ' Thumbnail';
+                
+                const productName = document.createElement('h3');
+                productName.textContent = product.name;
+                
+                const productPrice = document.createElement('p');
+                productPrice.textContent = '$' + product.price;
+                
+                const addToCartButton = document.createElement('button');
+                addToCartButton.className = 'addToCart';
+                addToCartButton.textContent = 'Add to Cart';
+                addToCartButton.addEventListener('click', function() {
+                    addToCart(productElement);
+                });
+                
+                // Append elements to the product container
+                productLink.appendChild(productImage);
+                productLink.appendChild(productName);
+                productElement.appendChild(productLink);
+                productElement.appendChild(productPrice);
+                productElement.appendChild(addToCartButton);
+                
+                // Append product container to the product list
+                productList.appendChild(productElement);
+            });
+        })
+        .catch(error => console.error('Error fetching products:', error));
+};
+
 
 function fetchProductDetails(productId) {
     fetch(`http://176.34.61.92:3000/products/${productId}`)
@@ -96,3 +146,10 @@ function fetchProductDetails(productId) {
         })
         .catch(error => console.error('Error fetching product details:', error));
 }
+//to open product details page
+function openProductDetails(productId) {
+    const pageName = 'Product' + productId + '.html';
+    window.location.href = pageName;
+}
+
+fetchCategories();

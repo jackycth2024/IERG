@@ -24,4 +24,5 @@ function updateProductDetails() {
     }
 }
 
+//to open product details page
 updateProductDetails();

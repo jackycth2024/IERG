@@ -26,14 +26,7 @@
             <div class="shopping-list" id="shoppingList">
                 <div class="product-entry">
                     <span>Product 1</span>
-                    <input type="number" placeholder="Quantity" class="quantity-input">
                 </div>
-                <div class="product-entry">
-                    <span>Product 2</span>
-                    <input type="number" placeholder="Quantity" class="quantity-input">
-                </div>
-                <button class="clearBtn" onclick="clearShoppingCart()">Clear Cart</button>
-                <button class="checkoutBtn" onclick="checkout()">Checkout</button>
             </div>
             
         </div>
@@ -46,43 +39,24 @@
         </nav>
     </header>    
     
-    <h2>Shoes:</h2>
-    <section id="main">
-        <div class="product" data-product-name="Shoes 1" data-product-price="19.99">
-            <a href="Shoes1.html">
-                <img src="image/img/shoes1.png" alt="Product 1 Thumbnail">
-                <h3>Shoes 1</h3>
-            </a>
-            <p>$19.99</p>
-            <button class="addToCart">Add to Cart</button>
-        </div>        
-
-        <div class="product" data-product-name="Shoes 2" data-product-price="18.99">
-            <a href="Shoes2.html">
-                <img src="image/img/shoes2.png" alt="Product 2 Thumbnail">
-                <h3>Shoes 2</h3>
-            </a>
-            <p>$18.99</p>
-            <button class="addToCart">Add to Cart</button>
-        </div>
-
-        <div class="product" data-product-name="Shoes 3" data-product-price="15.99">
-            <a href="Shoes3.html">
-                <img src="image/img/shoes3.png" alt="Product 3 Thumbnail">
-                <h3>Shoes 3</h3>
-            </a>
-            <p>$15.99</p>
-            <button class="addToCart">Add to Cart</button>
-        </div>
+    <h2>Clothes</h2>
+    <section id="Categoriesmain">
     </section>
-
+    
+    
     <footer>
         <p>&copy; 2024 CUHK Shopping. All rights reserved.</p>
+        <a href="admin_panel.html">Admin Panel</a>
     </footer>
-    
+
     <script src="network.js"></script>
-    <script src="main.js"></script>
     <script src="cart.js"></script>
     <script src="product.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetchCategoriesDetails(3);
+        });
+    </script>
 </body>
 </html>
