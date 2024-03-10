@@ -22,7 +22,7 @@ function updateShoppingList() {
         var productInfo = document.createElement("span");
         var quantities = document.createElement("span");
         productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
-        quantities.innerHTML = "<input type='number' class='quantity-input' placeholder='" + getTotalQuantity(itemName) + "' oninput='updateQuantity(\"" + itemName + "\", this.value)'></input>";
+        quantities.innerHTML = "<input type='number' class='quantity-input' placeholder='" + getTotalQuantity(itemName) + "' onblur='updateQuantity(\"" + itemName + "\", this.value)'></input>";
         quantities.innerHTML += "<button class='removeBtn' onclick='removeproduct(\"" + itemName + "\")'>Remove</button>";
         listItem.append(productInfo,quantities);       
         shoppingListContainer.appendChild(listItem);
@@ -59,6 +59,7 @@ function getTotalQuantity(itemName) {
 
 function updateQuantity(itemName, newQuantity) {
     cartItems[itemName].quantity = newQuantity;
+    updateShoppingList();
 }
 
 
