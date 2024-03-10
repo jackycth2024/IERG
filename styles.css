@@ -57,7 +57,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
     display: none;
-    max-height: 400px; 
+    max-height: 300px; 
     overflow-y: scroll; /* scrolling */
 }
 
