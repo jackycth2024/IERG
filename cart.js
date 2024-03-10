@@ -22,7 +22,7 @@ function updateShoppingList() {
         var productInfo = document.createElement("span");
         var quantities = document.createElement("span");
         productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
-        quantities.innerHTML = "<input type='number' class='quantity-input' placeholder='" + getTotalQuantity(itemName) + "' min='1' pattern='[0-9]*' onblur='updateQuantity(\"" + itemName + "\", this.value)'></input>";
+        quantities.innerHTML = "<input type='number' class='quantity-input' placeholder='" + getTotalQuantity(itemName) + "' min='1' pattern='[0-9]*' onblur='validateQuantity(this)'></input>";
         quantities.innerHTML += "<button class='removeBtn' onclick='removeproduct(\"" + itemName + "\")'>Remove</button>";
         listItem.append(productInfo,quantities);       
         shoppingListContainer.appendChild(listItem);
@@ -59,6 +59,18 @@ function getTotalQuantity(itemName) {
 
 function updateQuantity(itemName, newQuantity) {
     cartItems[itemName].quantity = newQuantity;
+    updateShoppingList();
+}
+
+function validateQuantity(input) {
+    var quantity = input.value;
+    var regex = /^[1-9]\d*$/;   //input = positive integer
+    if (!regex.test(quantity)) { 
+        // If not a positive integer, reset to previous valid value
+        input.value = quantityInputs[input.dataset.itemName] || 1;
+    } else {
+        quantityInputs[input.dataset.itemName] = quantity;
+    }
     updateShoppingList();
 }
 
