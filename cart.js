@@ -23,7 +23,7 @@ function updateShoppingList() {
         var quantities = document.createElement("span");
         productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
         quantities.innerHTML = "<input type='number' class='quantity-input' placeholder='" + getTotalQuantity(itemName) + "' oninput='updateQuantity(\"" + itemName + "\", this.value)'></input>";
-        quantities.innerHTML +="<button class='removeBtn' onclick='removeprodct(\"" + itemName + "\")'>Remove</button>";
+        quantities.innerHTML += "<button class='removeBtn' onclick='removeproduct(\"" + itemName + "\")'>Remove</button>";
         listItem.append(productInfo,quantities);       
         shoppingListContainer.appendChild(listItem);
 
@@ -78,8 +78,11 @@ function addToCart(productContainer) {
 }
 
 function removeproduct(itemName){
-    itemName = {};
-    updateShoppingList();
+    if (cartItems.hasOwnProperty(itemName)) {
+        delete cartItems[itemName]; 
+        updateShoppingList(); 
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
 }
 
 function clearShoppingCart() {
