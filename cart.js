@@ -23,7 +23,7 @@ function updateShoppingList() {
         var quantities = document.createElement("span");
         productInfo.innerHTML = item.name + " - $" + item.price.toFixed(2) + " x " + getTotalQuantity(itemName);
         quantities.innerHTML = "<input type='number' class='quantity-input' placeholder='" + getTotalQuantity(itemName) + "' oninput='updateQuantity(\"" + itemName + "\", this.value)'></input>";
-
+        quantities.innerHTML +="<button class='removeBtn' onclick='removeprodct(\"" + itemName + "\")'>Remove</button>";
         listItem.append(productInfo,quantities);       
         shoppingListContainer.appendChild(listItem);
 
@@ -43,7 +43,7 @@ function updateShoppingList() {
 
     if (Object.keys(cartItems).length > 0) {
         // Checkout and clear button
-        shoppingListContainer.innerHTML += "<button class='clearBtn' onclick='clearShoppingCart()'>Clear Cart</button>";
+        shoppingListContainer.innerHTML += "<button class='clearBtn' onclick='clearShoppingCart()'>Clear</button>";
         shoppingListContainer.innerHTML += "<button class='checkoutBtn' onclick='checkout()'>Checkout</button>";
     } else {
         shoppingListContainer.innerHTML = "<p>Empty</p>";
@@ -75,6 +75,10 @@ function addToCart(productContainer) {
         cartItems[productName] = { name: productName, price: productPrice, quantity: 1 };
     }
     updateShoppingList();
+}
+
+function removeproduct(itemName){
+    cartItems[itemName] = {};
 }
 
 function clearShoppingCart() {
@@ -115,14 +119,3 @@ if (clearButton) {
         clearShoppingCart();
     });
 }
-
-
-// function createQuantityInputEventListener(quantityInput, itemName) {
-//     return function(event) {
-//         console.log("success");
-//         console.log(quantityInput);
-//         var newQuantity = parseInt(event.target.value);
-//         updateQuantity(itemName, newQuantity);
-//         updateShoppingList();
-//     };
-// }
