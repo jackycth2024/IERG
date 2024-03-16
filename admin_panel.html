@@ -30,7 +30,7 @@
     <form id="productForm" enctype="multipart/form-data">
         <h2>New Product</h2>
         <label for="categoryId">Category*</label>
-        <select id="categoryId" required onchange="fetchProducts(this.value)">
+        <select id="categoryId" required>
             <option value="" selected disabled>Category</option>
         </select><br>
         <label for="productName">Name*</label>
@@ -50,8 +50,6 @@
         <button type="submit">Submit</button>
     </form>
     <div id="thumbnailPreview" class="thumbnail-container"></div>
-    <script src="network.js"></script>
-    <script src="main.js"></script>
     <script src="admin.js"></script>
 </body>
 </html>

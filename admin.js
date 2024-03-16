@@ -153,6 +153,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function fetchCategories() {
+        fetch('http://176.34.61.92:3000/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(categories => {
+                console.log('Categories')
+                const categorySelect = document.getElementById('categoryId');
+                categorySelect.innerHTML = '<option value="" selected disabled>Category</option>';
+                categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.catid;
+                    option.textContent = category.name;
+                    categorySelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+    }
+
     function addCategory(event) {
         event.preventDefault();
         const categoryName = document.getElementById('categoryName').value;
