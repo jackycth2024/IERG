@@ -219,4 +219,15 @@ document.addEventListener('DOMContentLoaded', function() {
             thumbnailPreview.innerHTML = 'Invalid file format';
         }
     }
+
+    productImageInput.addEventListener('change', handleFileSelection);
+
+    dropZone.addEventListener('drop', handleDrop);
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults);
+    });
+    
+    categoryForm.addEventListener('submit', addCategory);
+    
+    productForm.addEventListener('submit', addProduct);
 });
