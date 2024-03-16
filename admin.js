@@ -153,10 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function fetchCategories() {
-        fetchCategoriesDetails('');
-    }
-
     function addCategory(event) {
         event.preventDefault();
         const categoryName = document.getElementById('categoryName').value;
