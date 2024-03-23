@@ -14,10 +14,6 @@ function updateShoppingList() {
         var listItem = document.createElement("div");
         listItem.className = "product-entry";
 
-
-        console.log("cartItems[itemName]:"+cartItems[itemName]);
-        console.log("itemName:"+itemName);
-        console.log("item.price:"+item.price);
         // Product information
         var productInfo = document.createElement("span");
         var quantities = document.createElement("span");

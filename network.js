@@ -1,5 +1,5 @@
 function fetchCategories() {
-    fetch('http://176.34.61.92:3000/')
+    fetch('https://s33.ierg4210.ie.cuhk.edu.hk:3000/')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -24,7 +24,7 @@ function fetchCategories() {
 function fetchProducts(categoryId) {
     const productList = document.getElementById('productList');
     productList.innerHTML = '';
-    fetch(`http://176.34.61.92:3000/products/catid=${categoryId}`)
+    fetch(`https://s33.ierg4210.ie.cuhk.edu.hk:3000/products/catid=${categoryId}`)
         .then(response => response.json())
         .then(products => {
             products.forEach(product => {
@@ -38,7 +38,7 @@ function fetchProducts(categoryId) {
 
 //update the CategoriesDetails page
 function fetchCategoriesDetails(categoryId) {
-    fetch(`http://176.34.61.92:3000/products/catid=${categoryId}`)
+    fetch(`https://s33.ierg4210.ie.cuhk.edu.hk:3000/products/catid=${categoryId}`)
         .then(response => response.json())
         .then(products => {
             const productList = document.getElementById('Categoriesmain');
@@ -88,7 +88,7 @@ function fetchCategoriesDetails(categoryId) {
 
 
 function fetchProductDetails(productId) {
-    fetch(`http://176.34.61.92:3000/products/${productId}`)
+    fetch(`https://s33.ierg4210.ie.cuhk.edu.hk:3000/products/${productId}`)
         .then(response => response.json())
         .then(products => {
             if(Array.isArray(products) && products.length > 0){

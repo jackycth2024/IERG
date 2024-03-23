@@ -2,7 +2,7 @@
 fetchCategories();
 // Fetch products data from the server and update the "On Sales" section   
 function fetchProductsData() {
-    fetch('http://176.34.61.92:3000/products')
+    fetch('https://s33.ierg4210.ie.cuhk.edu.hk:3000/products')
         .then(response => response.json())
         .then(products => {
             const productList = document.getElementById('main');
