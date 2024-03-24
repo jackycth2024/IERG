@@ -18,7 +18,7 @@ function fetchCategories() {
             });
             
             // Fetch CSRF nonce and set it in the hidden input field
-            fetchCSRFNonce('myAction'); 
+            fetchCSRFNonce('formnonce'); 
         })
         .catch(error => console.error('Error fetching categories:', error));
 }
