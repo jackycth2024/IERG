@@ -10,9 +10,11 @@ function csrf_getNonce($action){
 }
 
 function csrf_verifyNonce($action, $receivedNonce){
-    if(isset($receivedNonce) && isset($_SESSION['csrf_nonce'][$action]) && $_SE>
-        unset($_SESSION['csrf_nonce'][$action]);
+    if(isset($receivedNonce) && $_SESSION['csrf_nonce'][$action]== $receivedNonce){
+        if($_SESSION['authtoken']==null)
+          unset($_SESSION['csrf_nonce'][$action]);
         return true;
+          
     }
     throw new Exception('csrf-attack');
 }
