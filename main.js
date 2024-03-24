@@ -5,7 +5,7 @@ function fetchProductsData() {
     fetch('http://s33.ierg4210.ie.cuhk.edu.hk:3000/products')
         .then(response => response.json())
         .then(products => {
-            const productList = document.getElementById('formnonce');
+            const productList = document.getElementById('main');
             productList.innerHTML = ''; // Clear existing products
             
             // Loop through the products and create HTML elements
@@ -36,7 +36,7 @@ function fetchProductsData() {
                 const csrfNonceInput = document.createElement('input');
                 csrfNonceInput.type = 'hidden';
                 csrfNonceInput.name = 'nonce';
-                csrfNonceInput.value = document.getElementById('nonce').value;
+                csrfNonceInput.value = "<?php echo csrf_getNonce($action; ?>"
                 console.log("nonce value" + csrfNonceInput.value);
                 addToCartButton.appendChild(csrfNonceInput);
 
