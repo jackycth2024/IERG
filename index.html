@@ -14,7 +14,7 @@
                 <img src="image/img/cuhklogo.jpg" alt="Logo" id="Logo">
             </a>
             
-            <form id="formnonce" method="POST" action="auth-process.php?action=<?php echo ($action = 'formnonce'); ?>">
+            <form id="formnonce" method="GET" action="auth-process.php?action=<?php echo ($action = 'formnonce'); ?>">
                 <!--search bar-->
                 <div class="search-bar">
                     <input type="text" name="query" placeholder="Search">
