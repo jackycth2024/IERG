@@ -42,7 +42,9 @@
     
     <h2>On Sales</h2>
     <section id="main">
-        <input type="hidden" id="nonce" name="nonce" value="<?php echo csrf_getNonce($action); ?>"/>
+        <form id="formnonce" method="POST" action="auth-process.php?action=<?php echo ($action = 'formnonce'); ?>">
+            <input type="hidden" id="nonce" name="nonce" value="<?php echo csrf_getNonce($action); ?>"/>
+        </form>
     </section>
     
     <label for="categorySelect">Select Category:</label>

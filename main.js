@@ -5,7 +5,7 @@ function fetchProductsData() {
     fetch('http://s33.ierg4210.ie.cuhk.edu.hk:3000/products')
         .then(response => response.json())
         .then(products => {
-            const productList = document.getElementById('main');
+            const productList = document.getElementById('formnonce');
             productList.innerHTML = ''; // Clear existing products
             
             // Loop through the products and create HTML elements
