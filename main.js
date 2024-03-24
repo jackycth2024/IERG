@@ -12,22 +12,22 @@ function fetchProductsData() {
             products.forEach(product => {
                 const productElement = document.createElement('div');
                 productElement.className = 'product';
-                productElement.dataset.productName = product.name;
-                productElement.dataset.productPrice = product.price;
+                productElement.dataset.productName = escapeHTML(product.name);
+                productElement.dataset.productPrice = escapeHTML(product.price);
                 
                 const productLink = document.createElement('a');
                 productLink.href = '#'; // Add link to product details page
                 productLink.onclick = () => openProductDetails(product.pid);
                 
                 const productImage = document.createElement('img');
-                productImage.src = 'image/img/Product' + product.pid + '.png';
-                productImage.alt = product.name + ' Thumbnail';
+                productImage.src = 'image/img/Product' + escapeHTML(product.pid) + '.png';
+                productImage.alt = escapeHTML(product.name) + ' Thumbnail';
                 
                 const productName = document.createElement('h3');
-                productName.textContent = product.name;
+                productName.textContent = escapeHTML(product.name);
                 
                 const productPrice = document.createElement('p');
-                productPrice.textContent = '$' + product.price;
+                productPrice.textContent = '$' + escapeHTML(product.price);
                 
                 const addToCartButton = document.createElement('button');
                 addToCartButton.className = 'addToCart';
@@ -56,6 +56,10 @@ function fetchProductsData() {
 function openProductDetails(productId) {
     const pageName = 'Product' + productId + '.html';
     window.location.href = pageName;
+}
+
+function escapeHTML(html) {
+    return html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 fetchProductsData();
