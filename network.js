@@ -12,8 +12,8 @@ function fetchCategories() {
             categorySelect.innerHTML = '<option value="">Select Category</option>';
             categories.forEach(category => {
                 const option = document.createElement('option');
-                option.value = category.catid;
-                option.textContent = category.name;
+                option.value = escapeHTML(category.catid);
+                option.textContent = escapeHTML(category.name);
                 categorySelect.appendChild(option);
             });
             
@@ -30,7 +30,7 @@ function fetchProducts(categoryId) {
         .then(products => {
             products.forEach(product => {
                 const productElement = document.createElement('div');
-                productElement.textContent = `${product.name} - $${product.price}`;
+                productElement.textContent = `${escapeHTML(product.name)} - $${escapeHTML(product.price)}`;
                 productList.appendChild(productElement);
             });
         })
@@ -49,22 +49,22 @@ function fetchCategoriesDetails(categoryId) {
             products.forEach(product => {
                 const productElement = document.createElement('div');
                 productElement.className = 'product';
-                productElement.dataset.productName = product.name;
-                productElement.dataset.productPrice = product.price;
+                productElement.dataset.productName = escapeHTML(product.name);
+                productElement.dataset.productPrice = escapeHTML(product.price);
                 
                 const productLink = document.createElement('a');
                 productLink.href = '#'; // Add link to product details page
                 productLink.onclick = () => openProductDetails(product.pid);
                 
                 const productImage = document.createElement('img');
-                productImage.src = 'image/img/Product' + product.pid + '.png';
-                productImage.alt = product.name + ' Thumbnail';
+                productImage.src = 'image/img/Product' + escapeHTML(product.pid) + '.png';
+                productImage.alt = escapeHTML(product.name) + ' Thumbnail';
                 
                 const productName = document.createElement('h3');
-                productName.textContent = product.name;
+                productName.textContent = escapeHTML(product.name);
                 
                 const productPrice = document.createElement('p');
-                productPrice.textContent = '$' + product.price;
+                productPrice.textContent = '$' + escapeHTML(product.price);
                 
                 const addToCartButton = document.createElement('button');
                 addToCartButton.className = 'addToCart';
@@ -99,31 +99,31 @@ function fetchProductDetails(productId) {
                 
                 const productElement = document.createElement('div');
                 productElement.className = 'product';
-                productElement.dataset.productName = product.name;
-                productElement.dataset.productPrice = product.price;
+                productElement.dataset.productName = escapeHTML(product.name);
+                productElement.dataset.productPrice = escapeHTML(product.price);
                 
                 const productImage = document.createElement('img');
                 productImage.src = 'image/img/Product' + productId + '.png';
-                productImage.alt = product.name + ' Full-size Image';
+                productImage.alt = escapeHTML(product.name) + ' Full-size Image';
                 
                 const productName = document.createElement('h3');
-                productName.textContent = product.name;
+                productName.textContent = escapeHTML(product.name);
                 
                 const productDescription = document.createElement('p');
-                productDescription.textContent = 'Description:' + product.description;
+                productDescription.textContent = 'Description:' + escapeHTML(product.description);
                 
                 const productPrice = document.createElement('p');
-                productPrice.textContent = '$' + product.price;
+                productPrice.textContent = '$' + escapeHTML(product.price);
                 
                 const productInventory = document.createElement('p');
                 productInventory.textContent = 'Inventory: ';
                 
                 const inventorySpan = document.createElement('span');
                 inventorySpan.id = 'inventoryCount';
-                inventorySpan.textContent = product.inventory;
+                inventorySpan.textContent = escapeHTML(product.inventory);
                 if (product.inventory <= 3) {
                     inventorySpan.style.color = "red";
-                    inventorySpan.textContent = " Only " + product.inventory + " left!";
+                    inventorySpan.textContent = " Only " + escapeHTML(product.inventory) + " left!";
                 } else {
                     inventorySpan.style.color = ""; // Reset color
                 }
@@ -155,10 +155,17 @@ function fetchProductDetails(productId) {
 }
 //to open product details page
 function openProductDetails(productId) {
-    const pageName = 'Product' + productId + '.html';
+    const pageName = 'Product' + escapeHTML(productId) + '.html';
     window.location.href = pageName;
 }
 
-
+function escapeHTML(html) {
+    return String(html)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
 
 fetchCategories();
