@@ -13,15 +13,19 @@
             <a href="index.html">
                 <img src="image/img/cuhklogo.jpg" alt="Logo" id="Logo">
             </a>
-            <!--search bar-->
-            <form class="search-bar" action="search_results.html" method="GET">
-                <input type="text" name="query" placeholder="Search">
-                <button type="submit">Search</button>
+            
+            <form id="formnonce" method="POST" action="admin-process.php?action=<?php echo ($action = 'myAction'); ?>">
+                <!--search bar-->
+                <div class="search-bar">
+                    <input type="text" name="query" placeholder="Search">
+                    <button type="submit">Search</button>
+                </div>
+                <!--shopping cart button-->
+                <div class="shopping-cart">
+                    <button type="submit"><img src="image/img/cart.png" alt="shoppingCart" id="cart"></button>
+                </div>
+                <input type="hidden" id="nonce" name="nonce" value="<?php echo csrf_getNonce($action); ?>"/>
             </form>
-            <!--shopping cart button-->
-            <div class="shopping-cart">
-                <button type="submit"><img src="image/img/cart.png" alt="shoppingCart" id="cart"></button>
-            </div>
             <!--shopping list-->
             <div class="shopping-list" id="shoppingList">
                 <div class="product-entry">

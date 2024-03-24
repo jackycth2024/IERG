@@ -16,6 +16,9 @@ function fetchCategories() {
                 option.textContent = category.name;
                 categorySelect.appendChild(option);
             });
+            
+            // Fetch CSRF nonce and set it in the hidden input field
+            fetchCSRFNonce('myAction'); 
         })
         .catch(error => console.error('Error fetching categories:', error));
 }
@@ -156,6 +159,35 @@ function fetchProductDetails(productId) {
 function openProductDetails(productId) {
     const pageName = 'Product' + productId + '.html';
     window.location.href = pageName;
+}
+
+function fetchCSRFNonce(action) {
+    fetch('get-nonce.php?action=' + action)
+        .then(response => response.text())
+        .then(nonce => {
+            document.getElementById('csrfNonce').value = nonce;
+        })
+        .catch(error => console.error('Error fetching CSRF nonce:', error));
+}
+
+function csrf_getNonce($action){
+    //generate a nonce with mt_rand()
+    $nonce = mt_rand().mt_rand();
+    //with regard to $action, save the nonce in $_SESSION
+    if(!isset($_SESSION['csrf_nonce']))
+      $_SESSION['csrf_nonce'] = array();
+    $_SESSION['csrf_nonce'][$action] = $nonce;
+    return $nonce;
+}
+
+function csrf_verifyNonce($action, $receivedNonce){
+    //assume that $REQUEST['action'] is already validated
+    if(isset($receivedNonce) && $_SESSION['csrf_nonce'][$action] == $receivedNonce){
+        if($_SESSION['authtoken']==null)
+          unset($_SESSION['csrf_nonce'][$action]);
+        return true;
+    }
+    throw new Exception('csrf-attack');
 }
 
 fetchCategories();
