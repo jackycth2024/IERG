@@ -12,8 +12,8 @@ function fetchCategories() {
             categorySelect.innerHTML = '<option value="">Select Category</option>';
             categories.forEach(category => {
                 const option = document.createElement('option');
-                option.value = escapeHTML(category.catid);
-                option.textContent = escapeHTML(category.name);
+                option.value = category.catid;
+                option.textContent = category.name;
                 categorySelect.appendChild(option);
             });
             
