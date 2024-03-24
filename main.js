@@ -32,15 +32,22 @@ function fetchProductsData() {
                 const addToCartButton = document.createElement('button');
                 addToCartButton.className = 'addToCart';
                 addToCartButton.textContent = 'Add to Cart';
+
                 // Include CSRF nonce in the button
+                const action = 'auth-process.php';
                 const csrfNonceInput = document.createElement('input');
                 csrfNonceInput.type = 'hidden';
                 csrfNonceInput.name = 'nonce';
-                csrfNonceInput.value = "<?php echo csrf_getNonce($action; ?>"
+                csrfNonce = "<?php echo csrf_getNonce(action); ?>";
+                csrfNonceInput.value = csrfNonce;
                 console.log("nonce value" + csrfNonceInput.value);
                 addToCartButton.appendChild(csrfNonceInput);
 
                 addToCartButton.addEventListener('click', function() {
+                    const formData = new FormData();
+                    formData.append('pid', product.pid);
+                    formData.append('nonce', csrfNonce);
+                    addToCart(formData);
                     addToCart(productElement);
                 });
                 
