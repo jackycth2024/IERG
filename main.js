@@ -36,6 +36,13 @@ function fetchProductsData() {
                     addToCart(productElement);
                 });
                 
+                // Include CSRF nonce in the button
+                const csrfNonceInput = document.createElement('input');
+                csrfNonceInput.type = 'hidden';
+                csrfNonceInput.name = 'nonce';
+                csrfNonceInput.value = document.getElementById('nonce').value;
+                addToCartButton.appendChild(csrfNonceInput);
+
                 // Append elements to the product container
                 productLink.appendChild(productImage);
                 productLink.appendChild(productName);
