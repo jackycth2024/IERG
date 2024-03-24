@@ -41,7 +41,7 @@
     </header>    
     
     <h2>On Sales</h2>
-    <form id="nonceform" method="POST" action="auth-process.php">
+    <form id="nonceform" action="auth-process.php">
         <input type="hidden" id="csrfNonce" name="csrfNonce" value="<?php echo csrf_getNonce('action'); ?>">
         <section id="main">
         </section>
