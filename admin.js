@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function fetchCategories() {
-        fetch('https://s33.ierg4210.ie.cuhk.edu.hk:3000/')
+        fetch('https://s33.ierg4210.ie.cuhk.edu.hk:3000/categories')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
