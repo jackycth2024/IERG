@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Fetch products data from the server and update the "On Sales" section
     function fetchProductsData() {
-        fetch('http://176.34.61.92:3000/products')
+        fetch('https://s33.ierg4210.ie.cuhk.edu.hk:3000/products')
             .then(response => response.json())
             .then(products => {
                 const productList = document.getElementById('main');
@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // Function to fetch categories from the server and populate the select element
 function fetchCategories() {
     console.log('Fetching categories...');
-    fetch('http://176.34.61.92:3000/')
+    fetch('https://s33.ierg4210.ie.cuhk.edu.hk:3000/')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -233,7 +233,7 @@ function fetchProducts(categoryId) {
     productList.innerHTML = '';
     // Fetch products for the selected category
     console.log('Fetching products...');
-    fetch(`http://176.34.61.92:3000/products/catid=${categoryId}`)
+    fetch(`https://s33.ierg4210.ie.cuhk.edu.hk:3000/products/catid=${categoryId}`)
         .then(response => response.json())
         .then(products => {
             products.forEach(product => {
@@ -255,7 +255,7 @@ function openProductDetails(productId) {
 
 //display product details in product details page
 function fetchProductDetails(productId) {
-    fetch(`http://176.34.61.92:3000/products/${productId}`)
+    fetch(`https://s33.ierg4210.ie.cuhk.edu.hk:3000/products/${productId}`)
         .then(response => response.json())
         .then(products => {
             if(Array.isArray(products) && products.length > 0){
