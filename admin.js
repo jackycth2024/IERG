@@ -1,44 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const username = "admin";
-    const password = "password";
 
-    const loginForm = document.getElementById('loginForm');
     const categoryForm = document.getElementById('categoryForm');
     const productForm = document.getElementById('productForm');
     const productImageInput = document.getElementById('productImage');
     const dropZone = document.getElementById('dropZone');
     const thumbnailPreview = document.getElementById('thumbnailPreview');
 
-    hideForms();
 
-    loginForm.addEventListener('submit', handleLogin);
 
     categoryForm.addEventListener('submit', addCategory);
     productForm.addEventListener('submit', addProduct);
 
-    function hideForms() {
-        categoryForm.style.display = 'none';
-        productForm.style.display = 'none';
-    }
-
-    function showForms() {
-        categoryForm.style.display = 'block';
-        productForm.style.display = 'block';
-    }
-
-    function handleLogin(event) {
-        event.preventDefault();
-        const enteredUsername = document.getElementById('username').value;
-        const enteredPassword = document.getElementById('password').value;
-
-        if (enteredUsername === username && enteredPassword === password) {
-            loginForm.style.display = 'none';
-            showForms();
-            fetchCategories();
-        } else {
-            alert('Invalid username or password. Please try again.');
-        }
-    }
 
     function fetchCategories() {
         fetch('/api/categories')
