@@ -2,7 +2,7 @@
 fetchCategories();
 // Fetch products data from the server and update the "On Sales" section   
 function fetchProductsData() {
-    fetch('/api/products')
+    fetch('/products')
         .then(response => response.json())
         .then(products => {
             const productList = document.getElementById('main');

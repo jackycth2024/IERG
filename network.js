@@ -1,5 +1,5 @@
 function fetchCategories() {
-    fetch('/categories')
+    fetch('/')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -25,7 +25,7 @@ function fetchCategories() {
 function fetchProducts(categoryId) {
     const productList = document.getElementById('productList');
     productList.innerHTML = '';
-    fetch('/api/products/catid=${categoryId}')
+    fetch('/products/catid=${categoryId}')
         .then(response => response.json())
         .then(products => {
             products.forEach(product => {
@@ -39,7 +39,7 @@ function fetchProducts(categoryId) {
 
 //update the CategoriesDetails page
 function fetchCategoriesDetails(categoryId) {
-    fetch('/api/products/catid=${categoryId}')
+    fetch('/products/catid=${categoryId}')
         .then(response => response.json())
         .then(products => {
             const productList = document.getElementById('Categoriesmain');
@@ -89,7 +89,7 @@ function fetchCategoriesDetails(categoryId) {
 
 
 function fetchProductDetails(productId) {
-    fetch('/api/products/${productId}')
+    fetch('/products/${productId}')
         .then(response => response.json())
         .then(products => {
             if(Array.isArray(products) && products.length > 0){
