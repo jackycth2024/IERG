@@ -89,7 +89,7 @@ function fetchCategoriesDetails(categoryId) {
 
 
 function fetchProductDetails(productId) {
-    fetch('/api/products/${productId}')
+    fetch(`/api/products/${productId}`)
         .then(response => response.json())
         .then(products => {
             if(Array.isArray(products) && products.length > 0){
