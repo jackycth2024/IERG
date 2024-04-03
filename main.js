@@ -78,10 +78,10 @@ function checkLoginStatus() {
 // Function to show account name and logout button
 function showLoggedInUser(email) {
     const accountContainer = document.getElementById('accountContainer');
-    accountContainer.innerHTML = ''; // Clear existing content
+    accountContainer.innerHTML = ''; 
 
     const accountName = document.createElement('span');
-    accountName.textContent = email;
+    accountName.textContent = email || 'guest';
     accountContainer.appendChild(accountName);
 
     const logoutButton = document.createElement('button');
@@ -93,7 +93,7 @@ function showLoggedInUser(email) {
 // Function to show login button
 function showLoginButton() {
     const accountContainer = document.getElementById('accountContainer');
-    accountContainer.innerHTML = ''; // Clear existing content
+    accountContainer.innerHTML = '';
 
     const loginButton = document.createElement('button');
     loginButton.textContent = 'Login';
