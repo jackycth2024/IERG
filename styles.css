@@ -75,6 +75,10 @@ body {
     width: 50px;
 }
 
+#accountContainer {
+    margin-right: 10px;
+}
+
 .separator-line {
     border-top: 2px solid #000; /* thickness */
     margin-top: 10px; 

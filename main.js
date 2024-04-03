@@ -81,8 +81,10 @@ function showLoggedInUser(email) {
     accountContainer.innerHTML = ''; 
 
     const accountName = document.createElement('span');
-    accountName.textContent = email || 'guest';
+    accountName.textContent = email;
     accountContainer.appendChild(accountName);
+
+    accountContainer.appendChild(document.createTextNode('\u00A0'));
 
     const logoutButton = document.createElement('button');
     logoutButton.textContent = 'Logout';
@@ -94,6 +96,12 @@ function showLoggedInUser(email) {
 function showLoginButton() {
     const accountContainer = document.getElementById('accountContainer');
     accountContainer.innerHTML = '';
+
+    const accountName = document.createElement('span');
+    accountName.textContent = 'Guest';
+    accountContainer.appendChild(accountName);
+
+    accountContainer.appendChild(document.createTextNode('\u00A0'));
 
     const loginButton = document.createElement('button');
     loginButton.textContent = 'Login';
