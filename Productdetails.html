@@ -56,11 +56,14 @@
     </footer>
     
     <script src="/network.js"></script>
+    <script src="/main.js"></script>
     <script src="/cart.js"></script>
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            fetchProductDetails(1);
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('productId');
+            fetchProductDetails(productId);
         });
     </script>
 </body>

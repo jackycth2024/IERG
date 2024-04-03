@@ -50,9 +50,10 @@ function fetchProductsData() {
         })
         .catch(error => console.error('Error fetching products:', error));
 }
+
 //to open product details page
 function openProductDetails(productId) {
-    const pageName = 'Product' + productId + '.html';
+    const pageName = 'productDetails.html?productId=' + productId;
     window.location.href = pageName;
 }
 
