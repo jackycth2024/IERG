@@ -75,6 +75,11 @@ body {
     width: 50px;
 }
 
+.account-Container {
+    margin-right: 10px;
+    float: right;
+}
+
 #accountContainer {
     margin-right: 10px;
     float: right;
