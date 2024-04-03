@@ -1,5 +1,3 @@
-// Fetch categories when the page loads
-fetchCategories();
 // Fetch products data from the server and update the "On Sales" section   
 function fetchProductsData() {
     fetch('/api/products')
@@ -59,5 +57,62 @@ function openProductDetails(productId) {
 }
 
 
-fetchProductsData();
+// Check if the user is logged in
+document.addEventListener('DOMContentLoaded', function() {
+    checkLoginStatus();
+});
 
+function checkLoginStatus() {
+    fetch('/api/user')
+        .then(response => response.json())
+        .then(user => {
+            if (user) {
+                showLoggedInUser(user.email);
+            } else {
+                showLoginButton();
+            }
+        })
+        .catch(error => console.error('Error checking login status:', error));
+}
+
+// Function to show account name and logout button
+function showLoggedInUser(email) {
+    const accountContainer = document.getElementById('accountContainer');
+    accountContainer.innerHTML = ''; // Clear existing content
+
+    const accountName = document.createElement('span');
+    accountName.textContent = email;
+    accountContainer.appendChild(accountName);
+
+    const logoutButton = document.createElement('button');
+    logoutButton.textContent = 'Logout';
+    logoutButton.addEventListener('click', logout);
+    accountContainer.appendChild(logoutButton);
+}
+
+// Function to show login button
+function showLoginButton() {
+    const accountContainer = document.getElementById('accountContainer');
+    accountContainer.innerHTML = ''; // Clear existing content
+
+    const loginButton = document.createElement('button');
+    loginButton.textContent = 'Login';
+    loginButton.addEventListener('click', ToLoginPage);
+    accountContainer.appendChild(loginButton);
+}
+
+// Function to handle logout
+function logout() {
+    fetch('/api/logout', {
+        method: 'post'
+    })
+    .then(() => {
+        location.reload();
+    })
+    .catch(error => console.error('Error logging out:', error));
+}
+
+// Function to navigate to the login page
+function ToLoginPage() {
+    window.location.href = '/login.html';
+}

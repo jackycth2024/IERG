@@ -102,6 +102,8 @@ nav li {
     justify-content: space-around; 
 }
 
+
+
 .product {
     flex: 1 1 calc(30% - 20px); 
     margin: 10px;
