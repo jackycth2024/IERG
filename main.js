@@ -53,7 +53,7 @@ function fetchProductsData() {
 
 //to open product details page
 function openProductDetails(productId) {
-    const pageName = 'productDetails.html?productId=' + productId;
+    const pageName = 'ProductDetails.html?productId=' + productId;
     window.location.href = pageName;
 }
 
