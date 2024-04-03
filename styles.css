@@ -75,14 +75,17 @@ body {
     width: 50px;
 }
 
-.account-Container {
-    margin-right: 10px;
+#accountContainer {
     float: right;
 }
 
-#accountContainer {
+.account-container {
     margin-right: 10px;
-    float: right;
+}
+
+.account-container span {
+    display: inline-block; 
+    margin-right: 10px; 
 }
 
 .separator-line {
