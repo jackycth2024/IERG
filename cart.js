@@ -49,10 +49,10 @@ function updateShoppingList() {
 function copyShoppingList() {
     updateShoppingList();
     const shoppingListBody = document.getElementById('shoppingListBody');
-    
     shoppingListBody.innerHTML = '';
     const clonedShoppingList = shoppingList.cloneNode(true);
     shoppingListBody.appendChild(clonedShoppingList);
+    shoppingListBody.style.display = "block";
 }
 
 function getTotalQuantity(itemName) {
