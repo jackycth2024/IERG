@@ -5,7 +5,6 @@ var quantityInputs = {};
 
 function updateShoppingList() {
     shoppingList.innerHTML = "";
-    
     var totalAmount = 0;
 
     for (var itemName in cartItems) {
@@ -52,7 +51,8 @@ function copyShoppingList() {
     const shoppingListBody = document.getElementById('shoppingListBody');
     
     shoppingListBody.innerHTML = '';
-    shoppingListBody.innerHTML = shoppingList.innerHTML;
+    const clonedShoppingList = shoppingList.cloneNode(true);
+    shoppingListBody.appendChild(clonedShoppingList);
 }
 
 function getTotalQuantity(itemName) {
