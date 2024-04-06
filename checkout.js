@@ -38,13 +38,54 @@ function updateCheckoutList() {
     if (Object.keys(cartItems).length > 0) {
         // Checkout and clear button
         checkoutList.innerHTML += "<button class='clearBtn' onclick='clearShoppingCart()'>Clear</button>";
-        checkoutList.innerHTML += "<button class='checkoutBtn' onclick='checkout()'>Checkout</button>";
     } else {
         checkoutList.innerHTML = "<p>Empty</p>";
     }
 
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
+
+function renderPayPalButton() {
+    paypal.Buttons({
+        style: {
+            layout: 'vertical',
+            color: 'blue',
+            shape: 'rect',
+            label: 'paypal'
+        },
+        createOrder: async (data, actions) => {
+            let orderDetails =
+            await fetch("/my-server/get-order-details", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ /* Cart Details */ })
+            })
+            .then((response) => response.json());
+            return actions.order.create(orderDetails);
+        },   
+        onApprove: async (data, actions) => {
+            return actions.order.capture()
+                .then(async (orderDetails) => {
+                    await fetch("/my-server/save-order", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(orderDetails)
+                    });
+            });
+        },
+        onCancel: (data) => {
+            // Show a cancel page, or return to cart
+        },
+        onError: (err,) => {
+            // Redirect to a specific error page
+        },            
+    }).render('#paypal-button-container');
+}
+
 
 function getTotalQuantity(itemName) {
     var item = cartItems[itemName];
@@ -89,11 +130,5 @@ function removeproduct(itemName){
 function clearShoppingCart() {
     cartItems = {};
     updateCheckoutList();
-}
-
-function checkout() {
-   cartItems = {};
-   localStorage.setItem("cartItems", JSON.stringify(cartItems));
-   updateCheckoutList();
 }
 

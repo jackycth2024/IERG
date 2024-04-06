@@ -27,7 +27,7 @@
             <!--shopping list-->
             <div class="shopping-list" id="shoppingList">
                 <div class="product-entry">
-                    <span>Product 1</span>
+                    <span></span>
                 </div>
             </div>
         </div>
@@ -44,8 +44,9 @@
     <h2>Checkout List</h2>
     <div class="checkout-list" id="checkoutlist">
         <div class="product-entry">
-            <span>Product 1</span>
+            <span></span>
         </div>
+        <div id="paypal-button-container"></div>
     </div>
     
     <footer>
@@ -59,6 +60,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             updateCheckoutList();
+            renderPayPalButton();
         });
     </script>
     <script src="https://www.paypal.com/sdk/js?client-id=ATCA2dWuMpycu910opHHV2YVGWttA2cR_wVYpajGsy_pqDAQ6cktebRVwJuEKkAXPkd3RolUs0V9yfuA&components=buttons"></script>
