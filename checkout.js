@@ -45,6 +45,7 @@ function updateCheckoutList() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
+
 function renderPayPalButton() {
     paypal.Buttons({
         style: {
@@ -55,7 +56,7 @@ function renderPayPalButton() {
         },
         createOrder: async (data, actions) => {
             let orderDetails =
-                await fetch("/my-server/get-order-details", {
+                await fetch("/api/create-order", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -68,7 +69,7 @@ function renderPayPalButton() {
         onApprove: async (data, actions) => {
             return actions.order.capture()
                 .then(async (orderDetails) => {
-                    await fetch("/my-server/save-order", {
+                    await fetch("/api/capture-order", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
