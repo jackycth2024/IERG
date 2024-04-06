@@ -98,7 +98,6 @@ function renderPayPalButton() {
         },
         onError: (err,) => {
             console.error('Payment error:', err);
-            window.location.href = '/error';
         },            
     }).render('#paypal-button-container');
 }
