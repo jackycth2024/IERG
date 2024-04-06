@@ -56,14 +56,11 @@ function renderPayPalButton() {
             width: '80px'
         },
         createOrder: async (data, actions) => {
-            const items = [];
-            const checkoutListItems = document.querySelectorAll('.product-entry');
-            checkoutListItems.forEach(item => {
-                const itemName = item.querySelector('.product-name').textContent;
-                const itemPrice = parseFloat(item.querySelector('.product-price').textContent.replace('$', ''));
-                const itemQuantity = parseInt(item.querySelector('.quantity-input').value);
-                items.push({ name: itemName, price: itemPrice, quantity: itemQuantity });
-            });
+            var items = [];
+            for (var itemName in cartItems) {
+                var item = cartItems[itemName];
+                items.push({ name: item.name, price: item.price, quantity: getTotalQuantity(itemName) });
+            }
             let orderDetails =
                 await fetch("/api/create-order", {
                     method: "POST",
@@ -78,7 +75,7 @@ function renderPayPalButton() {
             return actions.order.capture()
                 .then(async (orderDetails) => {
                     await fetch("/api/capture-order", {
-                        method: "POST",
+                        method: "post",
                         headers: {
                             "Content-Type": "application/json",
                         },
@@ -89,7 +86,7 @@ function renderPayPalButton() {
         },
         onCancel: (data) => {
             fetch("/api/cancel-order", {
-                method: "POST",
+                method: "post",
                 headers: {
                     "Content-Type": "application/json",
                 },
