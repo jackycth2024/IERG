@@ -48,6 +48,7 @@ function updateShoppingList() {
 }
 
 function copyShoppingList() {
+    updateShoppingList();
     const shoppingListBody = document.getElementById('shoppingListBody');
     
     shoppingListBody.innerHTML = '';
