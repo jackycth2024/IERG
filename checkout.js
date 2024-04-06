@@ -55,12 +55,12 @@ function renderPayPalButton() {
         },
         createOrder: async (data, actions) => {
             let orderDetails =
-            await fetch("/my-server/get-order-details", {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ /* Cart Details */ })
+                await fetch("/my-server/get-order-details", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ /* Cart Details */ })
             })
             .then((response) => response.json());
             return actions.order.create(orderDetails);
