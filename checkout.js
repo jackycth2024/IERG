@@ -64,8 +64,7 @@ function renderPayPalButton() {
                     },
                     body: JSON.stringify({
                         items: [
-                        { name: "Product A", price: 10, quantity: 1 },
-                        { name: "Product B", price: 20, quantity: 2 }
+                        { name: "Product A", price: 7, quantity: 1 }
                     ] })
             })
             .then((response) => response.json());
