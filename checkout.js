@@ -52,7 +52,8 @@ function renderPayPalButton() {
             layout: 'vertical',
             color: 'blue',
             shape: 'rect',
-            label: 'paypal'
+            label: 'paypal',
+            width: '80px'
         },
         createOrder: async (data, actions) => {
             let orderDetails =
@@ -61,7 +62,11 @@ function renderPayPalButton() {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ /* Cart Details */ })
+                    body: JSON.stringify({
+                        items: [
+                        { name: "Product A", price: 10, quantity: 1 },
+                        { name: "Product B", price: 20, quantity: 2 }
+                    ] })
             })
             .then((response) => response.json());
             return actions.order.create(orderDetails);
