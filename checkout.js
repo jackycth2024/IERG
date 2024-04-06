@@ -3,7 +3,7 @@ var checkoutList = document.getElementById("checkoutlist");
 var cartItems = JSON.parse(localStorage.getItem("cartItems")) || {};
 var quantityInputs = {};
 
-function updateShoppingList() {
+function updateCheckoutList() {
     checkoutList.innerHTML = "";
     var totalAmount = 0;
 
@@ -56,10 +56,10 @@ function updateQuantity(itemName, newQuantity) {
     var regex = /^[1-9]\d*$/;  //to test positive integer
     if(regex.test(newQuantity)){
         cartItems[itemName].quantity = newQuantity;
-        updateShoppingList();
+        updateCheckoutList();
     }
     else{
-        updateShoppingList();
+        updateCheckoutList();
     }
 }
 
@@ -75,24 +75,25 @@ function addToCart(productContainer) {
     } else {
         cartItems[productName] = { name: productName, price: productPrice, quantity: 1 };
     }
-    updateShoppingList();
+    updateCheckoutList();
 }
 
 function removeproduct(itemName){
     if (cartItems.hasOwnProperty(itemName)) {
         delete cartItems[itemName];  
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        updateShoppingList();
+        updateCheckoutList();
     }
 }
 
 function clearShoppingCart() {
     cartItems = {};
-    updateShoppingList();
+    updateCheckoutList();
 }
 
 function checkout() {
    cartItems = {};
    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-   updateShoppingList();
+   updateCheckoutList();
 }
+
