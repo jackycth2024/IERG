@@ -46,14 +46,14 @@ function updateShoppingList() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
-//function copyShoppingList() {
-//    updateShoppingList();
-//    const shoppingListBody = document.getElementById('shoppingListBody');
+function copyShoppingList() {
+    updateShoppingList();
+    const shoppingListBody = document.getElementById('shoppingListBody');
     
-//    shoppingListBody.innerHTML = '';
-//    const clonedShoppingList = shoppingList.cloneNode(true);
-//    shoppingListBody.appendChild(clonedShoppingList);
-//}
+    shoppingListBody.innerHTML = '';
+    const clonedShoppingList = shoppingList.cloneNode(true);
+    shoppingListBody.appendChild(clonedShoppingList);
+}
 
 function getTotalQuantity(itemName) {
     var item = cartItems[itemName];
