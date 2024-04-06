@@ -40,7 +40,7 @@ function updateShoppingList() {
     if (Object.keys(cartItems).length > 0) {
         // Checkout and clear button
         shoppingListContainer.innerHTML += "<button class='clearBtn' onclick='clearShoppingCart()'>Clear</button>";
-        shoppingListContainer.innerHTML += "<button class='checkoutBtn' onclick='checkout()'>Checkout</button>";
+        shoppingListContainer.innerHTML += "<button class='checkoutBtn' onclick='tocheckout()'>Checkout</button>";
     } else {
         shoppingListContainer.innerHTML = "<p>Empty</p>";
     }
@@ -93,11 +93,14 @@ function clearShoppingCart() {
     updateShoppingList();
 }
 
-function checkout() {
-    alert("Checkout button clicked. Implement PayPal integration here.");
-    cartItems = {};
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    updateShoppingList();
+//function checkout() {
+//    cartItems = {};
+//    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+//    updateShoppingList();
+//}
+
+function tocheckout() {
+    window.location.href = '/checkout.html';
 }
 
 shoppingCart.addEventListener("mouseover", function(event) {
