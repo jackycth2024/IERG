@@ -56,18 +56,22 @@ function renderPayPalButton() {
             width: '80px'
         },
         createOrder: async (data, actions) => {
+            const items = [];
+            const checkoutListItems = document.querySelectorAll('.product-entry');
+            checkoutListItems.forEach(item => {
+                const itemName = item.querySelector('.product-name').textContent;
+                const itemPrice = parseFloat(item.querySelector('.product-price').textContent.replace('$', ''));
+                const itemQuantity = parseInt(item.querySelector('.quantity-input').value);
+                items.push({ name: itemName, price: itemPrice, quantity: itemQuantity });
+            });
             let orderDetails =
                 await fetch("/api/create-order", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({
-                        items: [
-                        { name: "Product A", price: 7, quantity: 1 }
-                    ] })
-            })
-            .then((response) => response.json());
+                    body: JSON.stringify({ items: items })
+            }).then((response) => response.json());
             return actions.order.create(orderDetails);
         },   
         onApprove: async (data, actions) => {
@@ -80,13 +84,21 @@ function renderPayPalButton() {
                         },
                         body: JSON.stringify(orderDetails)
                     });
+                    clearShoppingCart();
             });
         },
         onCancel: (data) => {
-            // Show a cancel page, or return to cart
+            fetch("/api/cancel-order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
+            });
         },
         onError: (err,) => {
-            // Redirect to a specific error page
+            console.error('Payment error:', err);
+            window.location.href = '/error';
         },            
     }).render('#paypal-button-container');
 }
