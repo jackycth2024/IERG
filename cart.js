@@ -52,7 +52,7 @@ function copyShoppingList() {
     shoppingListBody.innerHTML = '';
     const clonedShoppingList = shoppingList.cloneNode(true);
     shoppingListBody.appendChild(clonedShoppingList);
-    shoppingListBody.style.display = "block";
+    shoppingList.style.display = "block";
 }
 
 function getTotalQuantity(itemName) {
