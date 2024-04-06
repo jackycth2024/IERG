@@ -4,8 +4,7 @@ var cartItems = JSON.parse(localStorage.getItem("cartItems")) || {};
 var quantityInputs = {};
 
 function updateShoppingList() {
-    var shoppingListContainer = document.getElementById("shoppingList");
-    shoppingListContainer.innerHTML = "";
+    shoppingList.innerHTML = "";
     
     var totalAmount = 0;
 
@@ -21,7 +20,7 @@ function updateShoppingList() {
         quantities.innerHTML = "<input type='number' class='quantity-input' placeholder='" + getTotalQuantity(itemName) + "' min='1' pattern='^[1-9]\d*$*' onblur='updateQuantity(\"" + itemName + "\", this.value)'></input>";
         quantities.innerHTML += "<button class='removeBtn' onclick='removeproduct(\"" + itemName + "\")'>Remove</button>";
         listItem.append(productInfo,quantities);       
-        shoppingListContainer.appendChild(listItem);
+        shoppingList.appendChild(listItem);
 
         // Calculate subtotal for the current item and add it to total amount
         var subtotal = item.price * getTotalQuantity(itemName);
@@ -31,18 +30,18 @@ function updateShoppingList() {
 
     var line = document.createElement("hr");
     line.className = "separator-line";
-    shoppingListContainer.appendChild(line);
+    shoppingList.appendChild(line);
 
     var totalAmountContainer = document.createElement("div");
     totalAmountContainer.textContent = "Total Amount: $" + totalAmount.toFixed(2);
-    shoppingListContainer.appendChild(totalAmountContainer);
+    shoppingList.appendChild(totalAmountContainer);
 
     if (Object.keys(cartItems).length > 0) {
         // Checkout and clear button
-        shoppingListContainer.innerHTML += "<button class='clearBtn' onclick='clearShoppingCart()'>Clear</button>";
-        shoppingListContainer.innerHTML += "<button class='checkoutBtn' onclick='tocheckout()'>Checkout</button>";
+        shoppingList.innerHTML += "<button class='clearBtn' onclick='clearShoppingCart()'>Clear</button>";
+        shoppingList.innerHTML += "<button class='checkoutBtn' onclick='tocheckout()'>Checkout</button>";
     } else {
-        shoppingListContainer.innerHTML = "<p>Empty</p>";
+        shoppingList.innerHTML = "<p>Empty</p>";
     }
 
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
