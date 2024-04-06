@@ -78,7 +78,20 @@ body {
 .checkout-list {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
-    max-height: 300px; 
+}
+
+.checkout-list .product-entry {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.ckeckout-list .quantity-input {
+    width: 80px; 
+}
+
+.checkout-list input {
+    width: 50px;
 }
 
 .account-container {
