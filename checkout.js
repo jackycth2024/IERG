@@ -45,6 +45,7 @@ function updateCheckoutList() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
+
 function renderPayPalButton() {
     paypal.Buttons({
         style: {
@@ -73,7 +74,7 @@ function renderPayPalButton() {
                 const orderDetails = await response.json();
                 console.log('OrderID:', orderDetails.orderId);
                 console.log('Order Details:', orderDetails);
-                return actions.order.create(orderDetails);
+                return orderDetails.orderId;
             } catch (error) {
                 console.error('Error creating order:', error);
                 return null;
@@ -108,6 +109,7 @@ function renderPayPalButton() {
         },            
     }).render('#paypal-button-container');
 }
+
 
 
 function getTotalQuantity(itemName) {
