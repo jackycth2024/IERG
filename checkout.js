@@ -45,7 +45,7 @@ function updateCheckoutList() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
-function renderPayPalButton() {
+/*function renderPayPalButton() {
     paypal.Buttons({
         style: {
             layout: 'vertical',
@@ -70,7 +70,7 @@ function renderPayPalButton() {
             console.log('OrderID:', orderDetails);
             console.log('Order Details:', orderDetails.orderDetails);
             return actions.order.create(orderDetails);
-        },   
+        },
         onApprove: async (data, actions) => {
             return actions.order.capture()
                 .then(async (orderDetails) => {
@@ -97,7 +97,7 @@ function renderPayPalButton() {
             console.error('Payment error:', err);
         },            
     }).render('#paypal-button-container');
-}
+}*/
 
 /*function renderPayPalButton() {
     paypal.Buttons({
