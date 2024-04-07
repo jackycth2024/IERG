@@ -69,7 +69,8 @@ function renderPayPalButton() {
                     },
                     body: JSON.stringify({ items: items })
             }).then((response) => response.json());
-            console.log('Order Details:', orderDetails);
+            console.log('OrderID:', orderDetails);
+            console.log('Order Details:', orderDetails.orderDetails);
             return actions.order.create(orderDetails);
         },   
         onApprove: async (data, actions) => {
