@@ -45,7 +45,7 @@ function updateCheckoutList() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
-/*function renderPayPalButton() {
+function renderPayPalButton() {
     paypal.Buttons({
         style: {
             layout: 'vertical',
@@ -97,7 +97,7 @@ function updateCheckoutList() {
             console.error('Payment error:', err);
         },            
     }).render('#paypal-button-container');
-}*/
+}
 
 /*function renderPayPalButton() {
     paypal.Buttons({
