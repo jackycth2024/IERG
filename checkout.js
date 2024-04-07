@@ -73,7 +73,7 @@ function renderPayPalButton() {
                 const orderDetails = await response.json();
                 console.log('OrderID:', orderDetails.orderId);
                 console.log('Order Details:', orderDetails);
-                return orderDetails.orderId;
+                return actions.order.create(orderDetails);
             } catch (error) {
                 console.error('Error creating order:', error);
                 return null;
@@ -109,62 +109,6 @@ function renderPayPalButton() {
     }).render('#paypal-button-container');
 }
 
-
-
-/*function renderPayPalButton() {
-    paypal.Buttons({
-        style: {
-            layout: 'vertical',
-            color: 'blue',
-            shape: 'rect',
-            label: 'paypal'
-        },
-        createOrder: async (data, actions) => {
-            var items = [];
-            for (var itemName in cartItems) {
-                var item = cartItems[itemName];
-                items.push({ name: item.name, price: item.price, quantity: getTotalQuantity(itemName) });
-            }
-            let orderDetails =
-                await fetch("/api/create-order", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ items: items })
-            }).then((response) => response.json());
-            console.log('OrderID:', orderDetails);
-            console.log('Order Details:', orderDetails.orderDetails);
-            return actions.order.create(orderDetails);
-        },   
-        onApprove: async (data, actions) => {
-            return actions.order.capture()
-                .then(async (orderDetails) => {
-                    await fetch("/api/capture-order", {
-                        method: "post",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(orderDetails)
-                    });
-                    clearShoppingCart();
-            });
-        },
-        onCancel: (data) => {
-            fetch("/api/cancel-order", {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data)
-            });
-        },
-        onError: (err,) => {
-            console.error('Payment error:', err);
-        },            
-    }).render('#paypal-button-container');
-}
-*/
 
 function getTotalQuantity(itemName) {
     var item = cartItems[itemName];
