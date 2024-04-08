@@ -171,6 +171,8 @@ nav li {
     margin: 20px 0;
 }
 
+
+
 .thumbnail-container {
     display: flex;
     justify-content: left;
@@ -184,6 +186,33 @@ nav li {
     height: 200px; 
 }
 
+.table {
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table th {
+    border-bottom: 2px solid #ddd; 
+}
+
+.table tr:last-child td {
+    border-bottom: 2px solid #ddd;
+}
+
+.table th:first-child,
+.table td:first-child {
+    border-left: 2px solid #ddd; 
+}
+
+.table th:last-child,
+.table td:last-child {
+    border-right: 2px solid #ddd; 
+}
 
 footer {
     background-color: #333;
