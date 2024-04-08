@@ -77,12 +77,12 @@ function checkLoginStatus() {
 }
 
 // Function to show account name and logout button
-function showLoggedInUser(email) {
+function showLoggedInUser(username) {
     const accountContainer = document.getElementById('accountContainer');
     accountContainer.innerHTML = ''; 
 
     const accountName = document.createElement('span');
-    accountName.textContent = email;
+    accountName.textContent = username;
     accountContainer.appendChild(accountName);
 
     accountContainer.appendChild(document.createTextNode('\u00A0'));
