@@ -67,8 +67,6 @@ function checkLoginStatus() {
     fetch('/api/user')
         .then(response => response.json())
         .then(user => {
-            console.log("User:", user);
-            console.log("Username:", user.username)
             if (user) {
                 showLoggedInUser(user.username);
             } else {
