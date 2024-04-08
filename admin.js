@@ -34,6 +34,33 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error fetching categories:', error));
     }
 
+    function fetchOrders() {
+        fetch('/api/orders')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(orders => {
+                console.log('Orders:', orders);
+                const ordersTableBody = document.getElementById('ordersTableBody');
+                ordersTableBody.innerHTML = '';
+                orders.forEach(order => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${order.uuid}</td>
+                        <td>${order.username}</td>
+                        <td>${order.digest}</td>
+                        <td>${order.salt}</td>
+                        <td>${order.orderdetails}</td>
+                    `;
+                ordersTableBody.appendChild(row);
+        });
+            })
+            .catch(error => console.error('Error fetching orders:', error));
+    }
+
     function addCategory(event) {
         event.preventDefault();
         const categoryName = document.getElementById('categoryName').value;
@@ -89,4 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
     categoryForm.addEventListener('submit', addCategory);
     
     productForm.addEventListener('submit', addProduct);
+    fetchCategories();
+    fetchOrders();
 });
