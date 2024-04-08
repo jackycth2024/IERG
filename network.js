@@ -7,7 +7,6 @@ function fetchCategories() {
             return response.json();
         })
         .then(categories => {
-            console.log('Categories')
             const categorySelect = document.getElementById('categorySelect');
             categorySelect.innerHTML = '<option value="">Select Category</option>';
             categories.forEach(category => {
