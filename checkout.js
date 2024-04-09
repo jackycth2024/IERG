@@ -70,17 +70,19 @@ function renderPayPalButton() {
             return orderDetails.orderId;
         },
         onApprove: async (data, actions) => {
+            const orderId = data.orderID;
+            console.log('onApprove orderId:',orderId);
             return actions.order.capture()
-                .then(async (orderDetails) => {
+                .then(async () => {
                     await fetch("/api/capture-order", {
-                        method: "post",
+                        method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify(orderDetails)
+                        body: JSON.stringify({ orderId: orderId })
                     });
                     clearShoppingCart();
-            });
+                });
         },
         onCancel: (data) => {
             fetch("/api/cancel-order", {
