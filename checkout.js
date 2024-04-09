@@ -67,8 +67,6 @@ function renderPayPalButton() {
                     },
                     body: JSON.stringify({ items: items })
             }).then((response) => response.json());
-            console.log('OrderID:', orderDetails.orderId);
-            console.log('Order Details:', orderDetails.orderDetails);
             return orderDetails.orderId;
         },
         onApprove: async (data, actions) => {
@@ -83,8 +81,9 @@ function renderPayPalButton() {
            //         });
            //         clearShoppingCart();
            // });
-           window.location.href = data.orderID.links.find(link => link.rel === 'approve').href;
-           clearShoppingCart();
+           const approveUrl = `https://www.sandbox.paypal.com/checkoutnow?token=${data.orderID}`;
+           window.location.href = approveUrl;
+        //   window.location.href = data.orderID.links.find(link => link.rel === 'approve').href;
         },
         onCancel: (data) => {
             fetch("/api/cancel-order", {
