@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('/api/user')
             .then(response => response.json())
             .then(user => {
-                if (user === 'admin') {
+                if (user.username === 'admin') {
                     return;
                 } else {
                     window.location.href = '/login.html';
