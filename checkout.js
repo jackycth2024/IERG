@@ -74,12 +74,12 @@ function renderPayPalButton() {
             console.log('onApprove orderId:',orderId);
             return actions.order.capture()
                 .then(async () => {
-                    await fetch("/api/capture-order", {
+                    await fetch("/api/paypal-webhook", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({ orderId: orderId })
+                        body: JSON.stringify({ orderId: orderId})
                     });
                     clearShoppingCart();
                 });
