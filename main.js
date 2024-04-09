@@ -83,10 +83,10 @@ function showLoggedInUser(username) {
 
     const accountName = document.createElement('span');
     accountName.textContent = username;
+    logoutButton.addEventListener('click', window.location.href = '/memberportal.html');
     accountContainer.appendChild(accountName);
 
     accountContainer.appendChild(document.createTextNode('\u00A0'));
-
     const logoutButton = document.createElement('button');
     logoutButton.textContent = 'Logout';
     logoutButton.addEventListener('click', logout);
