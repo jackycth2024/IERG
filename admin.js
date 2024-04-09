@@ -49,12 +49,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 orders.forEach(order => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${order.uuid}</td>
+                        <td>${order.orderid}</td>
                         <td>${order.username}</td>
-                        <td>${order.digest}</td>
-                        <td>${order.salt}</td>
                         <td>${order.payment_status}</td>
                         <td>${order.orderdetails}</td>
+                        <td>${order.uuid}</td>
+                        <td>${order.digest}</td>
+                        <td>${order.salt}</td>
                     `;
                 ordersTableBody.appendChild(row);
         });
