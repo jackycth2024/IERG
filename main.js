@@ -125,3 +125,5 @@ function logout() {
 function ToLoginPage() {
     window.location.href = '/login.html';
 }
+
+fetchProductsData();
