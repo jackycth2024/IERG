@@ -81,8 +81,8 @@ function renderPayPalButton() {
            //         });
            //         clearShoppingCart();
            // });
-           const approveUrl = `https://www.sandbox.paypal.com/checkoutnow?token=${data.orderID}`;
-           window.location.href = approveUrl;
+           //const approveUrl = `https://www.sandbox.paypal.com/checkoutnow?token=${data.orderID}`;
+           //window.location.href = approveUrl;
         //   window.location.href = data.orderID.links.find(link => link.rel === 'approve').href;
         },
         onCancel: (data) => {
