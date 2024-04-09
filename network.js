@@ -24,6 +24,7 @@ function fetchCategories() {
 function fetchProducts(categoryId) {
     const productList = document.getElementById('productList');
     productList.innerHTML = '';
+    console.log('categoryId:', categoryId);
     fetch('/api/products/catid=${categoryId}')
         .then(response => response.json())
         .then(products => {
