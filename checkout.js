@@ -84,7 +84,7 @@ function renderPayPalButton() {
            //         clearShoppingCart();
            // });
            window.location.href = data.orderID.links.find(link => link.rel === 'approve').href;
-           clearShoppingCart();
+           //clearShoppingCart();
         },
         onCancel: (data) => {
             fetch("/api/cancel-order", {
