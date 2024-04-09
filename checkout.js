@@ -70,20 +70,17 @@ function renderPayPalButton() {
             return orderDetails.orderId;
         },
         onApprove: async (data, actions) => {
-           // return actions.order.capture()
-           //     .then(async (orderDetails) => {
-           //         await fetch("/api/capture-order", {
-           //             method: "post",
-           //             headers: {
-           //                 "Content-Type": "application/json",
-           //             },
-           //             body: JSON.stringify(orderDetails)
-           //         });
-           //         clearShoppingCart();
-           // });
-           //const approveUrl = `https://www.sandbox.paypal.com/checkoutnow?token=${data.orderID}`;
-           //window.location.href = approveUrl;
-        //   window.location.href = data.orderID.links.find(link => link.rel === 'approve').href;
+            return actions.order.capture()
+                .then(async (orderDetails) => {
+                    await fetch("/api/capture-order", {
+                        method: "post",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(orderDetails)
+                    });
+                    clearShoppingCart();
+            });
         },
         onCancel: (data) => {
             fetch("/api/cancel-order", {
