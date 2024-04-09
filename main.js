@@ -81,7 +81,7 @@ function showLoggedInUser(username) {
     const accountContainer = document.getElementById('accountContainer');
     accountContainer.innerHTML = ''; 
 
-    const accountName = document.createElement('span');
+    const accountName = document.createElement('a');
     accountName.textContent = username;
     accountName.href = '/memberportal.html';
     accountContainer.appendChild(accountName);
