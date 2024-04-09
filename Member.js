@@ -7,10 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(user => {
                 if (user.username) {
-                    user=user.username;
-                    fetchOrders(user);
+                    fetchOrders(user.username);
                     function fetchOrders(username) {
-                        fetch('/api/orders/${username}')
+                        fetch(`/api/orders/${username}`)
                             .then(response => {
                                 if (!response.ok) {
                                     throw new Error('Network response was not ok');
@@ -39,6 +38,4 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Error checking login status:', error));
     }
-
-    fetchOrders();
 });
