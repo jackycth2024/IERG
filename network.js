@@ -166,3 +166,5 @@ function escapeHTML(html) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;");
 }
+
+fetchCategories();
