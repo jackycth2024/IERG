@@ -1,5 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    checkLoginStatus();
+    
+    function checkLoginStatus() {
+        fetch('/api/user')
+            .then(response => response.json())
+            .then(user => {
+                if (user === 'admin') {
+                    return;
+                } else {
+                    window.location.href = '/login.html';
+                }
+            })
+            .catch(error => console.error('Error checking login status:', error));
+    }
     const categoryForm = document.getElementById('categoryForm');
     const productForm = document.getElementById('productForm');
     const productImageInput = document.getElementById('productImage');
