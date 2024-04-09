@@ -24,8 +24,7 @@ function fetchCategories() {
 function fetchProducts(categoryId) {
     const productList = document.getElementById('productList');
     productList.innerHTML = '';
-    console.log('categoryId:', categoryId);
-    fetch('/api/products/catid=${categoryId}')
+    fetch(`/api/products/catid=${categoryId}`)
         .then(response => response.json())
         .then(products => {
             products.forEach(product => {
@@ -39,7 +38,7 @@ function fetchProducts(categoryId) {
 
 //update the CategoriesDetails page
 function fetchCategoriesDetails(categoryId) {
-    fetch('/api/products/catid=${categoryId}')
+    fetch(`/api/products/catid=${categoryId}`)
         .then(response => response.json())
         .then(products => {
             const productList = document.getElementById('Categoriesmain');
@@ -167,5 +166,3 @@ function escapeHTML(html) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;");
 }
-
-fetchCategories();
