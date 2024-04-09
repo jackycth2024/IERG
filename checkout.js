@@ -67,22 +67,23 @@ function renderPayPalButton() {
                     },
                     body: JSON.stringify({ items: items })
             }).then((response) => response.json());
-            console.log('OrderID:', orderDetails);
+            console.log('OrderID:', orderDetails.orderId);
             console.log('Order Details:', orderDetails.orderDetails);
-            return actions.order.create(orderDetails);
+            return orderDetails.orderId;
         },
         onApprove: async (data, actions) => {
-            return actions.order.capture()
-                .then(async (orderDetails) => {
-                    await fetch("/api/capture-order", {
-                        method: "post",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(orderDetails)
-                    });
-                    clearShoppingCart();
-            });
+           // return actions.order.capture()
+           //     .then(async (orderDetails) => {
+           //         await fetch("/api/capture-order", {
+           //             method: "post",
+           //             headers: {
+           //                 "Content-Type": "application/json",
+           //             },
+           //             body: JSON.stringify(orderDetails)
+           //         });
+           //         clearShoppingCart();
+           // });
+           window.location.href = data.orderID.links.find(link => link.rel === 'approve').href;
         },
         onCancel: (data) => {
             fetch("/api/cancel-order", {
