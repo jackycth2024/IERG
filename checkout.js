@@ -84,6 +84,7 @@ function renderPayPalButton() {
            //         clearShoppingCart();
            // });
            window.location.href = data.orderID.links.find(link => link.rel === 'approve').href;
+           clearShoppingCart();
         },
         onCancel: (data) => {
             fetch("/api/cancel-order", {
@@ -92,79 +93,17 @@ function renderPayPalButton() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(data)
+            }).then(() => {
+                clearShoppingCart();
+            }).catch((error) => {
+                console.error('Error canceling order:', error);
             });
         },
         onError: (err,) => {
             console.error('Payment error:', err);
-        },            
+        },
     }).render('#paypal-button-container');
 }
-
-/*function renderPayPalButton() {
-    paypal.Buttons({
-        style: {
-            layout: 'vertical',
-            color: 'blue',
-            shape: 'rect',
-            label: 'paypal'
-        },
-        createOrder: async (data, actions) => {
-            var items = [];
-            for (var itemName in cartItems) {
-                var item = cartItems[itemName];
-                items.push({ name: item.name, price: item.price, quantity: getTotalQuantity(itemName) });
-            }
-            try {
-                const response = await fetch("/api/create-order", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ items: items })
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to create order');
-                }
-                const orderDetails = await response.json();
-                console.log('OrderID:', orderDetails.orderId);
-                console.log('Order Details:', orderDetails);
-                return orderDetails.orderId;
-            } catch (error) {
-                console.error('Error creating order:', error);
-                return null;
-            }
-        },   
-        onApprove: async (data, actions) => {
-            try {
-                const orderDetails = await actions.order.capture();
-                await fetch("/api/capture-order", {
-                    method: "post",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(orderDetails)
-                });
-                clearShoppingCart();
-            } catch (error) {
-                console.error('Error capturing order:', error);
-            }
-        },
-        onCancel: (data) => {
-            fetch("/api/cancel-order", {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data)
-            });
-        },
-        onError: (err,) => {
-            console.error('Payment error:', err);
-        },            
-    }).render('#paypal-button-container');
-}*/
-
-
 
 function getTotalQuantity(itemName) {
     var item = cartItems[itemName];

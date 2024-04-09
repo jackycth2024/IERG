@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${order.username}</td>
                         <td>${order.digest}</td>
                         <td>${order.salt}</td>
+                        <td>${order.payment_status}</td>
                         <td>${order.orderdetails}</td>
                     `;
                 ordersTableBody.appendChild(row);
