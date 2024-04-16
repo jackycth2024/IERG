@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://s33.ierg4210.ie.cuhk.edu.hk:3000;">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>CUHK Shopping Website</title>
 </head>
 <body>
@@ -12,12 +12,11 @@
         <div class="logo-search">
             <!--logo-->
             <a href="/index.html">
-                <img src="/image/img/cuhklogo.jpg" alt="Logo" id="Logo">
+                <img src="image/img/cuhklogo.jpg" alt="Logo" id="Logo">
             </a>
-            
             <!--search bar-->
             <div class="search-bar">
-                <input type="text" name="query" placeholder="Search">
+                <input type="text" placeholder="Search">
                 <button type="submit">Search</button>
             </div>
             <!--shopping cart button-->
@@ -42,27 +41,10 @@
         </nav>
     </header>    
     
-    <h2>Member Portal</h2>
-    <div id="MemberManagement">
-        <h3>
-            <button id="changePasswordBtn" type="button">Change Password</button>
-        </h3>
-    </div>    
-    <div id="MemberOrdersContainer">
-        <h3>Orders</h3>
-        <table id="MemberOrdersTable" class="table">
-            <thead>
-                <tr>
-                    <th>OrderId</th>
-                    <th>Payment Status</th>
-                    <th>Order Details</th>
-                </tr>
-            </thead>
-            <tbody id="MemberOrdersTableBody">
-            </tbody>
-        </table>
-    </div>
-
+    <h2>Phones</h2>
+    <section id="Categoriesmain">
+    </section>
+    
     
     <footer>
         <p>&copy; 2024 CUHK Shopping. All rights reserved.</p>
@@ -71,6 +53,10 @@
     <script src="/network.js"></script>
     <script src="/main.js"></script>
     <script src="/cart.js"></script>
-    <script src="/Member.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetchCategoriesDetails(1);
+        });
+    </script>
 </body>
 </html>
