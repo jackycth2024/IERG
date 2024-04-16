@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const userResponse = await fetch('/api/user');
             const user = await userResponse.json();
             username = user.username;
-            console.log('username',username);
             const checkPasswordResponse = await fetch('/api/checkpassword', {
                 method: 'POST',
                 headers: {
@@ -31,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert('New password and confirm password do not match.');
                     return;
                 }
-
                 const changePasswordResponse = await fetch('/api/change-password', {
                     method: 'POST',
                     headers: {
