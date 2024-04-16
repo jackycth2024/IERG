@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('Error checking login status:', error);
-                window.location.href = '/login.html';
             });
     }
 });
