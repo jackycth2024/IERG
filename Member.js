@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(user => {
                 if (user.username) {
-                    console(user);
-                    console(user.username);
+                    console.log(user);
+                    console.log(user.username);
                     fetchOrders(user.username);
                     function fetchOrders(username) {
                         fetch(`/api/orders/${username}`)
