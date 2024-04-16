@@ -148,6 +148,8 @@ nav li {
     object-fit: cover; 
 }
 
+
+
 @media screen and (max-width: 768px) {
     .product {
         flex: 1 1 calc(50% - 20px); 

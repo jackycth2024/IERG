@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(user => {
                 if (user.username === 'admin') {
-                    return;
+                    document.getElementById('adminPanel').style.display = 'block';
                 } else {
                     window.location.href = '/login.html';
                 }
