@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(user => {
                 if (user.username) {
+                    console(user);
+                    console(user.username);
                     fetchOrders(user.username);
                     function fetchOrders(username) {
                         fetch(`/api/orders/${username}`)
@@ -18,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             })
                             .then(orders => {
                                 console.log('Orders:', orders);
-                                const ordersTableBody = document.getElementById('MemberordersContainer');
+                                const ordersTableBody = document.getElementById('MemberOrdersContainer');
                                 ordersTableBody.innerHTML = '';
                                 orders.forEach(order => {
                                     const row = document.createElement('tr');
