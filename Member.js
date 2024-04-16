@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(user => {
                 if (user.username) {
                     fetchOrders(user.username);
-                    document.getElementById('changePasswordBtn').addEventListener('click', changePassword);
                 } else {
                     window.location.href = '/login.html';
                 }
