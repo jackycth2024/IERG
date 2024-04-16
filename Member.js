@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const userResponse = await fetch('/api/user');
             const user = await userResponse.json();
+            console.log('user',user);
             const email = user.email;
+            console.log('email',email);
             const checkPasswordResponse = await fetch('/api/checkpassword', {
                 method: 'POST',
                 headers: {
